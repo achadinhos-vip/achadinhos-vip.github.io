@@ -293,10 +293,6 @@ footer p+p{margin-top:6px}
     <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2 4 6v6c0 5 3.4 8.6 8 10 4.6-1.4 8-5 8-10V6z"/></svg>Compra feita na loja oficial</div>
   </div>
 
-  <section class="bloco">
-    <div class="bloco-topo"><h2>Categorias</h2></div>
-    <div class="cats rolagem" id="cats"></div>
-  </section>
 
   <section class="bloco">
     <div class="bloco-topo rel-topo">
@@ -365,7 +361,7 @@ footer p+p{margin-top:6px}
 
   function desenharFixos(){
     const cs = categorias();
-    $('#cats').innerHTML = cs.map(([c,x]) => `<button class="cat" data-cat="${esc(c)}">${icone(c)}<span>${esc(c)}</span></button>`).join('');
+    if ($('#cats')) $('#cats').innerHTML = cs.map(([c,x]) => `<button class="cat" data-cat="${esc(c)}">${icone(c)}<span>${esc(c)}</span></button>`).join('');
     $('#relampago').innerHTML = OFERTAS.filter(o=>o.d>=50).sort((a,b)=>b.d-a.d).slice(0,12).map(o => {
       return `<a class="rel" href="${esc(o.u)}" target="_blank" rel="nofollow sponsored noopener" data-oferta="${esc(o.id)}">
         <div class="img"><img src="${esc(o.img)}" alt="" loading="lazy"></div>

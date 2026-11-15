@@ -96,12 +96,19 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .cats{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:minmax(118px,1fr);overflow-x:auto;scrollbar-width:thin}
 .cat{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 8px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:none;border-top:0;border-left:0;text-align:center;transition:box-shadow .15s}
 .cat:hover{box-shadow:inset 0 0 0 1px var(--brand)}
-.cat .bola{width:72px;height:72px;border-radius:50%;background:#F1F3F8;display:grid;place-items:center;overflow:hidden}
-.cat .bola img{width:80%;height:80%;object-fit:contain;mix-blend-mode:multiply}
+.cat .bola{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;transition:transform .15s}
+.cat:hover .bola{transform:scale(1.07)}
+.cat .bola svg{width:38px;height:38px}
 .cat span{font:600 14px/1.25 var(--f-body);min-height:2.5em}
 
 /* relâmpago */
-.rel-topo h2{display:flex;align-items:center;gap:10px;color:var(--price);font-style:italic;font-weight:900;font-family:var(--f-display);font-size:1.6rem;letter-spacing:-.01em}
+.rel-topo{background:linear-gradient(90deg,#D93B1C 0%,#EE4D2D 45%,#FF7A3D 100%);border-bottom:0;border-radius:4px 4px 0 0;position:relative;overflow:hidden}
+.rel-topo::after{content:"";position:absolute;inset:0;background:repeating-linear-gradient(-55deg,transparent 0 60px,rgba(255,255,255,.08) 60px 62px);pointer-events:none}
+.rel-topo>*{position:relative;z-index:1}
+.rel-topo h2 svg{color:#FFE45C}
+.rel-topo button.link{color:#fff;font-weight:800;background:rgba(0,0,0,.18);padding:6px 14px;border-radius:999px}
+.relogio b{background:#fff!important;color:#D93B1C!important}
+.rel-topo h2{display:flex;align-items:center;gap:10px;color:#fff;text-shadow:0 2px 0 rgba(120,20,0,.35);font-style:italic;font-weight:900;font-family:var(--f-display);font-size:1.6rem;letter-spacing:-.01em}
 .rel-topo h2 svg{width:28px!important;height:28px!important}
 .rel-topo h2 svg{width:22px;height:22px}
 .relogio{display:inline-flex;gap:4px;margin-left:6px}
@@ -203,6 +210,7 @@ footer p+p{margin-top:6px}
   .grade{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px}
   .cats{grid-auto-columns:92px}
   .cat .bola{width:58px;height:58px}
+  .cat .bola svg{width:30px;height:30px}
   .linha{grid-auto-columns:42%}
   .ordenar .info{display:none}
   .mais{padding:11px 40px}
@@ -330,11 +338,13 @@ footer p+p{margin-top:6px}
         <span class="ir">Ir para a loja ${seta}</span></div></a>`;
   }
   function ordenar(l){ const f = {desc:(a,b)=>b.d-a.d, novas:(a,b)=>b.ts-a.ts, menor:(a,b)=>a.p-b.p, maior:(a,b)=>b.p-a.p}[ordem]; return l.slice().sort(f); }
+  const ICONES = {"Celulares e Eletrônicos": ["#1546D6", "#E8EEFF", "<rect x='7' y='2.5' width='10' height='19' rx='2.2'/><path d='M11 18.5h2'/>"], "Games e Informática": ["#7A3FE0", "#F1EAFF", "<path d='M6.5 8h11a4 4 0 0 1 3.9 4.9l-.9 4a2.4 2.4 0 0 1-4.2.9L14.5 16h-5l-1.8 1.8a2.4 2.4 0 0 1-4.2-.9l-.9-4A4 4 0 0 1 6.5 8z'/><path d='M8 11v3M6.5 12.5h3'/><circle cx='15.5' cy='11.5' r='.6' fill='currentColor'/><circle cx='17' cy='13.5' r='.6' fill='currentColor'/>"], "Eletrodomésticos": ["#0E8A8A", "#E2F6F6", "<rect x='5' y='3' width='14' height='18' rx='2'/><path d='M5 7.5h14'/><circle cx='12' cy='14' r='4'/><circle cx='8' cy='5.3' r='.5' fill='currentColor'/>"], "Casa e Cozinha": ["#E5591B", "#FFEDE3", "<path d='M4 11h16v2a6 6 0 0 1-6 6h-4a6 6 0 0 1-6-6z'/><path d='M2.5 11h19M9 7c0-1 1-1.5 1-2.5M13 7c0-1 1-1.5 1-2.5'/>"], "Ferramentas e Construção": ["#B26A00", "#FFF3DC", "<path d='M14.7 6.3a4 4 0 0 0-5.3 5.3L3.5 17.5a1.8 1.8 0 0 0 2.5 2.5l5.9-5.9a4 4 0 0 0 5.3-5.3l-2.5 2.5-2.1-.4-.4-2.1z'/>"], "Beleza e Perfumaria": ["#D63A86", "#FFE6F2", "<rect x='6' y='9' width='12' height='12' rx='3'/><path d='M10 9V6h4v3M9.5 3.5h5'/><path d='M9.5 14.5h5'/>"], "Moda e Calçados": ["#2B7BD9", "#E4F0FF", "<path d='M8.5 3.5 4 6l1.8 4L8 9.2V20.5h8V9.2l2.2.8L20 6l-4.5-2.5a3.5 3.5 0 0 1-7 0z'/>"], "Joias e Relógios": ["#B8860B", "#FFF6D6", "<path d='M6 3.5h12l3 5-9 12-9-12z'/><path d='M3 8.5h18M9 3.5l3 17M15 3.5l-3 17'/>"], "Saúde e Fitness": ["#0E9F4F", "#E3F7EC", "<path d='M6.5 7v10M17.5 7v10M3.5 9.5v5M20.5 9.5v5M6.5 12h11'/>"], "Bebês e Brinquedos": ["#E0457B", "#FFE8EF", "<circle cx='12' cy='13' r='6.5'/><circle cx='6.8' cy='6.8' r='2.3'/><circle cx='17.2' cy='6.8' r='2.3'/><circle cx='9.7' cy='12' r='.6' fill='currentColor'/><circle cx='14.3' cy='12' r='.6' fill='currentColor'/><path d='M10.5 15.5c.9.7 2.1.7 3 0'/>"], "Pet": ["#8B5A2B", "#F6EADF", "<ellipse cx='12' cy='16' rx='4.5' ry='3.7'/><circle cx='6' cy='10.5' r='1.8'/><circle cx='9.3' cy='6.5' r='1.8'/><circle cx='14.7' cy='6.5' r='1.8'/><circle cx='18' cy='10.5' r='1.8'/>"], "Supermercado": ["#D93B1C", "#FFE9E3", "<path d='M3 4h2.5l2.2 10.5h10.6L20.5 7.5H6.4'/><circle cx='9.5' cy='19' r='1.5'/><circle cx='17' cy='19' r='1.5'/>"], "Automotivo": ["#334155", "#E9EDF3", "<path d='M4.5 16.5v-4l2-5a2 2 0 0 1 1.9-1.3h7.2a2 2 0 0 1 1.9 1.3l2 5v4'/><path d='M3.5 12.5h17v4h-17z'/><circle cx='7.5' cy='16.5' r='1.6'/><circle cx='16.5' cy='16.5' r='1.6'/>"], "Papelaria e Escritório": ["#5B6B8C", "#ECEFF6", "<path d='M15.5 4.5l4 4L9 19l-5 1 1-5z'/><path d='M13.5 6.5l4 4'/>"], "Achadinhos Variados": ["#E8A100", "#FFF4D6", "<rect x='3.5' y='8' width='17' height='4.5' rx='1'/><path d='M5 12.5v8h14v-8M12 8v12.5M12 8c-1.5-3.5-5.5-3.5-5-1 .3 1.5 3 1 5 1zM12 8c1.5-3.5 5.5-3.5 5-1-.3 1.5-3 1-5 1z'/>"]};
+  function icone(c){ const x = ICONES[c] || ICONES['Achadinhos Variados']; return `<span class="bola" style="background:${x[1]};color:${x[0]}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${x[2]}</svg></span>`; }
   function categorias(){ const m = new Map(); OFERTAS.forEach(o => { if(!m.has(o.c)) m.set(o.c,{n:0,img:o.img,d:-1}); const x=m.get(o.c); x.n++; if(o.d>x.d){x.d=o.d;x.img=o.img;} }); return [...m.entries()].sort((a,b)=>b[1].n-a[1].n); }
 
   function desenharFixos(){
     const cs = categorias();
-    $('#cats').innerHTML = cs.map(([c,x]) => `<button class="cat" data-cat="${esc(c)}"><span class="bola"><img src="${esc(x.img)}" alt="" loading="lazy"></span><span>${esc(c)}</span></button>`).join('');
+    $('#cats').innerHTML = cs.map(([c,x]) => `<button class="cat" data-cat="${esc(c)}">${icone(c)}<span>${esc(c)}</span></button>`).join('');
     $('#relampago').innerHTML = OFERTAS.filter(o=>o.d>=50).sort((a,b)=>b.d-a.d).slice(0,12).map(o => {
       return `<a class="rel" href="${esc(o.u)}" target="_blank" rel="nofollow sponsored noopener" data-oferta="${esc(o.id)}">
         <div class="img"><img src="${esc(o.img)}" alt="" loading="lazy"></div>

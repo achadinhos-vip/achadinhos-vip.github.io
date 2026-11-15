@@ -93,7 +93,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .bloco-topo a,.bloco-topo button.link{font:600 13px var(--f-body);color:var(--brand);background:none;border:0}
 
 /* categorias */
-.cats{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:minmax(118px,1fr);overflow-x:auto;scrollbar-width:thin}
+.cats{display:grid;grid-auto-flow:column;grid-template-rows:repeat(2,auto);grid-auto-columns:minmax(118px,1fr);overflow-x:auto}
 .cat{display:flex;flex-direction:column;align-items:center;gap:8px;padding:16px 8px 14px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:none;border-top:0;border-left:0;text-align:center;transition:box-shadow .15s}
 .cat:hover{box-shadow:inset 0 0 0 1px var(--brand)}
 .cat .bola{width:72px;height:72px;border-radius:50%;display:grid;place-items:center;transition:transform .15s}
@@ -113,7 +113,7 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .rel-topo h2 svg{width:22px;height:22px}
 .relogio{display:inline-flex;gap:4px;margin-left:6px}
 .relogio b{background:#111;color:#fff;font:800 16px var(--f-body);padding:2px 6px;border-radius:3px;font-variant-numeric:tabular-nums}
-.linha{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(170px,1fr);overflow-x:auto;scrollbar-width:thin}
+.linha{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(170px,1fr);overflow-x:auto;padding-bottom:6px}
 .rel{padding:12px 12px 16px;text-align:center;height:100%;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:8px;position:relative}
 .rel .img{aspect-ratio:1/1;position:relative;overflow:hidden;flex:none;width:100%}
 .rel .img img{position:absolute;inset:0;width:100%;height:100%;max-width:none;object-fit:contain}
@@ -124,9 +124,14 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 .barra span{position:relative;z-index:1;font:800 10.5px/18px var(--f-body);color:#fff;letter-spacing:.02em}
 
 /* descobertas */
-.abas{position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--topo-h,110px));z-index:20;background:var(--surface);border-bottom:4px solid var(--brand);margin-top:14px;display:flex;align-items:stretch;overflow-x:auto;scrollbar-width:none;border-radius:4px 4px 0 0}
-.abas::-webkit-scrollbar{display:none}
-.aba{flex:none;padding:15px 20px;background:none;border:0;font:800 15px var(--f-body);letter-spacing:.03em;text-transform:uppercase;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-4px}
+.abas{background:var(--surface);border-bottom:4px solid var(--brand);margin-top:14px;display:flex;flex-wrap:wrap;align-items:stretch;border-radius:4px 4px 0 0}
+.rolagem::-webkit-scrollbar{height:16px}
+.rolagem::-webkit-scrollbar-track{background:#E3E7F2;border-radius:999px}
+.rolagem::-webkit-scrollbar-thumb{background:var(--brand);border-radius:999px;border:3px solid #E3E7F2}
+.rolagem::-webkit-scrollbar-thumb:hover{background:var(--brand-2)}
+@supports not selector(::-webkit-scrollbar){.rolagem{scrollbar-width:auto;scrollbar-color:var(--brand) #E3E7F2}}
+.relogio b{text-shadow:none}
+.aba{flex:none;padding:15px 20px;background:none;border:0;font:800 15px var(--f-body);letter-spacing:.03em;text-transform:uppercase;color:var(--muted);border-bottom:3px solid transparent;white-space:nowrap}
 .aba[aria-pressed="true"]{color:var(--brand);border-bottom-color:var(--brand);background:#F0F4FF}
 .ordenar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#EDEEF2;padding:10px 14px;margin-top:10px;border-radius:4px;font-size:15px}
 .ordenar .ord{background:var(--surface);border:0;border-radius:3px;padding:8px 16px;font:600 14.5px var(--f-body)}
@@ -214,6 +219,8 @@ footer p+p{margin-top:6px}
   .cat .bola{width:58px;height:58px}
   .cat .bola svg{width:30px;height:30px}
   .linha{grid-auto-columns:42%}
+  .abas{flex-wrap:nowrap;overflow-x:auto;padding-bottom:2px;position:sticky;top:calc(env(safe-area-inset-top,0px) + var(--topo-h,70px));z-index:20}
+  .rolagem::-webkit-scrollbar{height:10px}
   .ordenar .info{display:none}
   .mais{padding:11px 40px}
   .rel-topo h2{font-size:1.02rem;gap:5px;white-space:nowrap}
@@ -279,7 +286,7 @@ footer p+p{margin-top:6px}
 
   <section class="bloco">
     <div class="bloco-topo"><h2>Categorias</h2></div>
-    <div class="cats" id="cats"></div>
+    <div class="cats rolagem" id="cats"></div>
   </section>
 
   <section class="bloco">
@@ -287,10 +294,10 @@ footer p+p{margin-top:6px}
       <h2><svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg>OFERTAS RELÂMPAGO <span class="relogio" id="relogio"><b>00</b><b>00</b><b>00</b></span></h2>
       <button class="link" data-ordem="desc" data-ir="lista">Ver todas ›</button>
     </div>
-    <div class="linha" id="relampago"></div>
+    <div class="linha rolagem" id="relampago"></div>
   </section>
 
-  <nav class="abas" id="abas" aria-label="Filtrar por categoria"></nav>
+  <nav class="abas rolagem" id="abas" aria-label="Filtrar por categoria"></nav>
   <div class="ordenar">
     <span>Ordenar por</span>
     <button class="ord" data-ordem="desc" aria-pressed="true">Maior desconto</button>
@@ -394,7 +401,7 @@ footer p+p{margin-top:6px}
     navigator.share({title:'Achadinhos VIP', text:'As melhores ofertas da internet', url:'https://achadinhos-vip.github.io'}).catch(()=>{}); });
   function iniciar(){ desenharFixos(); desenharLista(); relogio(); setInterval(relogio, 1000); ajustarTopo(); addEventListener('resize', ajustarTopo); }
   if (OFERTAS.length) iniciar();
-  else fetch('ofertas.json?v=5c28c5c099', {cache:'no-cache'}).then(r => r.json()).then(d => { OFERTAS = d; iniciar(); })
+  else fetch('ofertas.json?v=4d80fd6792', {cache:'no-cache'}).then(r => r.json()).then(d => { OFERTAS = d; iniciar(); })
     .catch(() => { $('#lista').innerHTML = '<div class="vazio"><b>Não conseguimos carregar as ofertas</b>Atualize a página em alguns instantes.</div>'; });
 })();
 </script>

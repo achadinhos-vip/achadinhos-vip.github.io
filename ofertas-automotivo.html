@@ -375,6 +375,10 @@ footer .gratidao,footer .ajude{color:#fff}
   .rel-topo h2{font-size:15px;gap:4px}
   .barra span{font-size:11.5px}
 }
+.ordenar .fx[data-loja]{display:inline-flex;align-items:center;gap:7px}
+.lg-loja{width:20px;height:20px;border-radius:5px;object-fit:contain;flex:none}
+#lista[data-loja="M"] .etq-loja,#lista[data-loja="S"] .etq-loja{display:none}
+#lista[data-loja="M"] .card .etq-nova,#lista[data-loja="S"] .card .etq-nova{top:8px}
 </style>
 <script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','1415057240838831');fbq('track','PageView');</script>
 </head>
@@ -449,6 +453,10 @@ footer .gratidao,footer .ajude{color:#fff}
       <button class="fx" data-faixa="50" aria-pressed="false">Até R$ 50</button>
       <button class="fx" data-faixa="100" aria-pressed="false">Até R$ 100</button>
       <button class="fx" data-faixa="200" aria-pressed="false">Até R$ 200</button></div>
+    <div class="grupo" id="grupoLoja"><span>Loja</span>
+      <button class="fx" data-loja="" aria-pressed="true">Todas</button>
+      <button class="fx" data-loja="M" aria-pressed="false"><img class="lg-loja" src="https://http2.mlstatic.com/frontend-assets/ml-web-navigation/ui-navigation/5.21.22/mercadolibre/180x180.png" alt="" width="20" height="20" onerror="this.remove()">Mercado Livre</button>
+      <button class="fx" data-loja="S" aria-pressed="false"><img class="lg-loja" src="https://deo.shopeemobile.com/shopee/shopee-pcmall-live-sg/assets/icon_favicon_1_96.1ce0e05fc18a86e5.png" alt="" width="20" height="20" onerror="this.remove()">Shopee</button></div>
     <span class="info" id="info"></span>
   </div>
   <div id="avisoShare" class="aviso-share" hidden></div>
@@ -486,7 +494,7 @@ footer .gratidao,footer .ajude{color:#fff}
   const brl = v => v.toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
   const esc = s => String(s).replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
   const norm = s => String(s).toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-  let cat = window.CAT_INICIAL || '', termo = '', ordem = 'desc', mostrando = POR_PAGINA, faixa = 0, destaque = '';
+  let cat = window.CAT_INICIAL || '', termo = '', ordem = 'desc', mostrando = POR_PAGINA, faixa = 0, destaque = '', loja = '';
   const SITE = (location.origin + location.pathname.replace(/[^/]*$/, '')).replace(/\/$/, '');
   const icShare = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.6 10.6l6.8-4.2M8.6 13.4l6.8 4.2"/></svg>';
   function tempo(ts){ const m = Math.max(0, (Date.now()/1000 - ts)/60 | 0); return m < 1 ? 'agora' : m < 60 ? `há ${m} min` : m < 1440 ? `há ${m/60|0} h` : `há ${m/1440|0} d`; }
@@ -514,6 +522,7 @@ footer .gratidao,footer .ajude{color:#fff}
   function desenharFixos(){
     const cs = categorias();
     if ($('#cats')) $('#cats').innerHTML = cs.map(([c,x]) => `<button class="cat" data-cat="${esc(c)}">${icone(c)}<span>${esc(c)}</span></button>`).join('');
+    if (!OFERTAS.some(o => o.l === 'S') || !OFERTAS.some(o => (o.l || 'M') === 'M')) $('#grupoLoja').hidden = true;
     $('#relampago').innerHTML = OFERTAS.filter(o=>o.d>=50).sort((a,b)=>b.d-a.d).slice(0,12).map(o => {
       return `<a class="rel" href="${esc(o.u)}" target="_blank" rel="nofollow sponsored noopener" data-oferta="${esc(o.id)}">
         <div class="img"><img src="${esc(o.img)}" alt="" loading="lazy"></div>
@@ -557,7 +566,7 @@ footer .gratidao,footer .ajude{color:#fff}
   }
   function desenharLista(){
     const t = norm(termo).trim();
-    const base = OFERTAS.filter(o => (!cat || o.c === cat) && (!faixa || o.p <= faixa));
+    const base = OFERTAS.filter(o => (!cat || o.c === cat) && (!faixa || o.p <= faixa) && (!loja || (o.l || 'M') === loja));
     let achados, parecidas = false;
     if (t){
       let r = buscar(base, termo, true);
@@ -565,7 +574,7 @@ footer .gratidao,footer .ajude{color:#fff}
       const pos = new Map(ordenar(r.map(x => x[0])).map((o, i) => [o.id, i]));
       achados = r.sort((a, b) => (b[1] - a[1]) || (pos.get(a[0].id) - pos.get(b[0].id))).map(x => x[0]);
     } else achados = ordenar(base);
-    if (destaque && !cat && !t && !faixa){ const d = OFERTAS.find(o => o.id === destaque); if (d) achados = [d].concat(achados.filter(o => o.id !== destaque)); }
+    if (destaque && !cat && !t && !faixa && !loja){ const d = OFERTAS.find(o => o.id === destaque); if (d) achados = [d].concat(achados.filter(o => o.id !== destaque)); }
     $('#info').textContent = `${achados.length} ofertas`;
     const tit = $('#titulo');
     tit.hidden = !termo || !achados.length;
@@ -582,7 +591,9 @@ footer .gratidao,footer .ajude{color:#fff}
     $('#mais').hidden = achados.length <= mostrando;
     document.querySelectorAll('.aba').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.cat === cat)));
     document.querySelectorAll('.ord').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.ordem === ordem)));
-    document.querySelectorAll('.fx').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.faixa === faixa)));
+    document.querySelectorAll('.fx[data-faixa]').forEach(b => b.setAttribute('aria-pressed', String(+b.dataset.faixa === faixa)));
+    document.querySelectorAll('.fx[data-loja]').forEach(b => b.setAttribute('aria-pressed', String(b.dataset.loja === loja)));
+    $('#lista').dataset.loja = loja;
   }
   let ultimaBusca = '', tPixel;
   const lupa = '<svg class="lupa" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>';
@@ -614,6 +625,8 @@ footer .gratidao,footer .ajude{color:#fff}
     if (sh){ e.preventDefault(); compartilhar(sh.dataset.share); return; }
     const fx = e.target.closest('[data-faixa]');
     if (fx){ faixa = +fx.dataset.faixa; mostrando = POR_PAGINA; desenharLista(); return; }
+    const lj = e.target.closest('[data-loja]');
+    if (lj){ loja = lj.dataset.loja; mostrando = POR_PAGINA; desenharLista(); return; }
     if (!e.target.closest('#auto') && !e.target.closest('#formBusca')) fecharAuto();
     const sg = e.target.closest('[data-sug]');
     if (sg){ const o = OFERTAS.find(x => x.id === sg.dataset.sug); fecharAuto();

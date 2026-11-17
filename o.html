@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta name="p:domain_verify" content="9d5e42f5ac44680152765e67a816d00d"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex"><title>Abrindo a oferta...</title>
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;font:600 17px system-ui,sans-serif;background:#0B3FBF;color:#fff;text-align:center}
+img{width:120px;height:auto;display:block;margin:0 auto 14px}a{color:#FFD43B}</style></head>
+<body><div><img src="logo.png" alt=""><p>Abrindo a oferta...</p><p><a id="ir" href="/">Toque aqui se não abrir</a></p></div>
+<script>
+(function(){
+  var c = (location.search.slice(1) || location.hash.slice(1)).split('&')[0].toLowerCase().replace(/[^a-z0-9]/g, '');
+  function ir(u){ document.getElementById('ir').href = u; location.replace(u); }
+  if (!c) return ir('/');
+  function tentar(n){
+    fetch('/l/' + c[0] + '.json?t=' + Date.now(), {cache:'no-store'}).then(function(r){ return r.json(); }).then(function(m){
+      var v = m[c];
+      if (v && v[0]) return ir(v[0]);
+      if (v) return ir('/#oferta-' + v[1]);
+      if (n) return setTimeout(function(){ tentar(n - 1); }, 2500);
+      ir('/');
+    }).catch(function(){ if (n) setTimeout(function(){ tentar(n - 1); }, 2500); else ir('/'); });
+  }
+  tentar(2);
+})();
+</script></body></html>

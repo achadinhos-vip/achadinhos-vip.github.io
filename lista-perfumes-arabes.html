@@ -273,6 +273,25 @@ main.wrap{padding-top:10px}
 @media(max-width:360px){.hero .wrap{height:174px}.hero h1{font-size:16px;max-width:29ch}}
 @media(max-height:550px){.hero .wrap{height:78px;min-height:0}.hero .hero-copy,.hero[data-tema=geral] .hero-copy{position:absolute;top:50%;left:16px;right:auto;width:28%;max-width:260px;transform:translateY(-50%);text-align:left}.hero h1{font-size:14px;margin:0;max-width:26ch}.hero .chamada{display:none}.hero .hero-scene img{top:0;bottom:auto;height:100%}.hero .hero-scene:after{display:none}.hero .hero-mascote{height:76px}.hero .wrap>.convite-hero{display:none}}
 
+.card .cmp{display:block;margin:6px 0 2px;padding:7px 9px;border-radius:9px;background:#EEF4FF;color:#1E3A8A;font-size:12.5px;text-decoration:none;border:1px solid #C9D8FF}.card .cmp.cmp-melhor{background:#ECFDF3;color:#065F46;border-color:#A7F3C9}
+.assist{background:#101C2C;color:#fff;padding:22px 0}
+.assist-in{max-width:1240px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.assist h2{font:900 clamp(22px,3vw,30px)/1.1 Montserrat,system-ui,sans-serif;margin:0 0 4px}
+.assist p.sub{margin:0 0 12px;color:#C9D3E0;font-size:14px}
+.assist form{display:flex;gap:8px;flex-wrap:wrap}
+.assist input{flex:1 1 320px;min-width:0;border:0;border-radius:12px;padding:14px 16px;font-size:15px;color:#101C2C;background:#fff}
+.assist button{border:0;border-radius:12px;padding:0 20px;min-height:48px;background:#FFCF16;color:#101C2C;font-weight:900;font-size:15px;cursor:pointer}
+.assist-ex{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.assist-ex button{min-height:34px;padding:0 12px;border-radius:999px;background:#1C2D44;color:#E6EDF6;font-weight:600;font-size:13px;border:1px solid #2E4562}
+.assist-res{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;margin-top:14px}
+.assist-res:empty{display:none}
+.ar{background:#fff;color:#122035;border-radius:14px;padding:12px;display:flex;gap:10px;text-decoration:none;min-width:0}
+.ar img{width:76px;height:76px;object-fit:contain;border-radius:10px;background:#F5F6F8;flex:none}
+.ar div{min-width:0;display:flex;flex-direction:column;gap:4px}
+.ar b.t{font-size:13.5px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ar .pq{font-size:12.5px;color:#065F46;background:#ECFDF3;border-radius:8px;padding:5px 7px;line-height:1.35}
+.ar .pr{font:900 18px/1 Montserrat,system-ui,sans-serif}
+.assist-msg{margin-top:10px;color:#C9D3E0;font-size:13.5px}
 
 .radar{background:linear-gradient(135deg,#7A0A14 0%,#B3121F 55%,#E11D2E 100%);color:#fff;padding:22px 0 18px;position:relative;overflow:hidden}
 .radar:before{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;border:2px solid rgba(255,255,255,.12);box-shadow:0 0 0 40px rgba(255,255,255,.04),0 0 0 90px rgba(255,255,255,.03)}
@@ -413,7 +432,7 @@ main.wrap{padding-top:17px}.clube-nav{margin-bottom:12px}.clube-abas button,.int
   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 3h3l2 12h12l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>Compra direto na loja</span>
   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m10 13 4-4M8 16l-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg>Links de afiliado</span>
 </div></div>
-<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Perfumes árabes até R$ 150</h1><p class="sub-lista">Fragrâncias de marcas árabes até R$ 150. Confira vendedor e detalhes na loja.</p><p class="meta-lista">5 achados selecionados · Atualizada em 22/11/2026 às 19:19</p></div><section class="orcamento" id="orcamento" aria-labelledby="tituloOrcamento" hidden>
+<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Perfumes árabes até R$ 150</h1><p class="sub-lista">Fragrâncias de marcas árabes até R$ 150. Confira vendedor e detalhes na loja.</p><p class="meta-lista">5 achados selecionados · Atualizada em 22/11/2026 às 19:27</p></div><section class="orcamento" id="orcamento" aria-labelledby="tituloOrcamento" hidden>
   <div class="orcamento-cabecalho"><span class="orcamento-contexto" id="orcamentoContexto">Em todas as categorias</span><h2 id="tituloOrcamento">Qual o valor máximo que você quer pagar?</h2></div>
   <div class="orcamento-controles">
     <div class="orcamento-faixa"><label class="so-leitor" for="limiteDeslizante">Ajustar valor máximo; no final da barra, sem limite</label><input id="limiteDeslizante" type="range" min="1" max="2001" step="0.01" value="2001" aria-valuetext="Sem limite de preço"><div class="orcamento-marcas" aria-hidden="true"><span>R$ 1</span><span id="orcamentoMaximo">R$ 2.000,00 · sem limite</span></div></div>
@@ -725,7 +744,7 @@ main.wrap{padding-top:17px}.clube-nav{margin-bottom:12px}.clube-abas button,.int
       <div class="foto-wrap"><a class="img${o.img?'':' sem-foto'}" data-foto ${link} aria-label="Ver ${esc(o.t)} ${destino}">${foto(o)}</a><button type="button" class="salvar" data-salvar="${esc(o.id)}" aria-pressed="${estaSalva(o.id)}" aria-label="${estaSalva(o.id)?'Remover oferta das salvas':'Salvar oferta'}" title="Salvar oferta">${icSalvar}</button><button type="button" class="share" data-share="${esc(o.id)}" aria-label="Compartilhar esta oferta" title="Compartilhar">${icShare}</button></div>
       <div class="info">${o.fr?`<p class="frase">${esc(o.fr)}</p>`:''}<h3><a ${link} title="${esc(o.t)}">${esc(o.t)}</a></h3>
         <div class="compra">${blocoPreco}<a class="ir" ${link}>Ver oferta ${destino}</a></div>
-        <div class="prova">${o.n?`<b title="Nota informada pela loja">★ ${String(o.n).replace('.',',')}</b>`:''}${v?`<span>${v} vendidos</span>`:''}</div>
+${o.cmp?`<a class="cmp ${o.cmp.p<o.p?'cmp-melhor':''}" href="${esc(o.cmp.u)}" target="_blank" rel="sponsored noopener">⚖️ ${o.cmp.l==='S'?'Na Shopee':'No Mercado Livre'}: <b>R$ ${Number(o.cmp.p).toLocaleString('pt-BR',{minimumFractionDigits:2})}</b>${o.cmp.p<o.p?' · mais barato lá':o.cmp.p>o.p?' · aqui está mais barato':''}</a>`:''}        <div class="prova">${o.n?`<b title="Nota informada pela loja">★ ${String(o.n).replace('.',',')}</b>`:''}${v?`<span>${v} vendidos</span>`:''}</div>
         ${blocoCupom(o)}
         <details class="card-mais"><summary>Detalhes da oferta</summary><div class="card-mais-conteudo">
         ${o.det?`<p class="detalhe-produto">${esc(o.det)}</p>`:''}
@@ -1067,6 +1086,62 @@ main.wrap{padding-top:17px}.clube-nav{margin-bottom:12px}.clube-abas button,.int
   fetch('listas.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{if(Array.isArray(d)){todas=d;desenhar();if(Number.isFinite(window.CLUBE_RETORNO_Y))requestAnimationFrame(()=>scrollTo({top:window.CLUBE_RETORNO_Y,behavior:'instant'}));}}).catch(()=>{});
 })();
 </script><script>(function(){
+const STOP=new Set('de da do das dos com para pra e em a o as os um uma que quero preciso algo alguma algum meu minha mae mãe pai presente bom boa barato barata ate até r reais por favor me ajuda escolher gosta adora kit casa estudar estudo trabalho casal familia uso dia'.split(' '));
+function sa(t){return String(t||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();}
+function esc(t){return String(t||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function brl(v){return 'R$ '+Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
+function orc(q){const m=sa(q).match(/(?:ate|até|maximo|max|menos de|abaixo de)\s*r?\$?\s*(\d+[\d.,]*)/)||sa(q).match(/r\$\s*(\d+[\d.,]*)/);return m?parseFloat(m[1].replace(/\./g,'').replace(',','.')):0;}
+const SIN={cozinhar:['panela','panelas','utensilios','frigideira','cozinha'],cozinha:['cozinha','panela','utensilio'],cheiro:['perfume','body','splash'],cheirosa:['perfume','body','splash'],perfume:['perfume','parfum','colonia'],pele:['skincare','facial','hidratante','serum','protetor'],cabelo:['shampoo','condicionador','capilar','secador','escova','chapinha'],ferramenta:['parafusadeira','furadeira','ferramenta','chave'],computador:['notebook','pc','monitor','ssd','mouse','teclado'],organizar:['organizador','cesto','pote']};
+function termos(q){const g=[];for(const w of sa(q).match(/[a-z0-9]+/g)||[]){if(STOP.has(w)||w.length<3||/^\d+$/.test(w))continue;g.push([w].concat(SIN[w]||[]));}return g;}
+function motivos(o,lista){const m=[];if(o.mp)m.push('está no menor preço que registramos');if(o.n>=4.7)m.push('nota '+String(o.n).replace('.',',')+' na loja');if(o.v>=1000)m.push((o.v>=10000?Math.floor(o.v/1000)+' mil':o.v.toLocaleString('pt-BR'))+'+ vendidos');const min=Math.min(...lista.map(x=>x.p));if(o.p===min)m.push('a opção mais barata');if(o.cmp&&o.cmp.p>o.p)m.push('mais barato aqui que na outra loja');return m.slice(0,2).join(' · ')||'boa avaliação e preço conferido';}
+let IDF=null;
+function prepIdf(lista){IDF=new Map();for(const o of lista){const vis=new Set(sa(o.t).match(/[a-z0-9]+/g)||[]);for(const w of vis)IDF.set(w,(IDF.get(w)||0)+1);}IDF.n=lista.length;}
+function peso(w){const df=IDF.get(w)||0;return df?Math.log(IDF.n/df):0;}
+function local(q,lista){
+  if(!IDF)prepIdf(lista);
+  const t=termos(q).map(gr=>gr.filter(w=>peso(w)>0)).filter(gr=>gr.length),max=orc(q);if(!t.length)return [];
+  const total=t.reduce((a,gr)=>a+Math.max(...gr.map(peso)),0);const cand=[];
+  for(const o of lista){if(!o.p||o.np)continue;if(max&&o.p>max)continue;
+    const pal=sa(o.t).match(/[a-z0-9]+/g)||[];const ini=new Set(pal.slice(0,4));const tem=new Set(pal);
+    let acc=0,frente=0;for(const gr of t){let m=0,f=0;for(const w of gr){if(tem.has(w)){m=Math.max(m,peso(w));if(ini.has(w))f=Math.max(f,peso(w));}}acc+=m;frente+=f;}
+    if(acc<total*0.5)continue;
+    const s=acc*6+frente*4+(o.n||0)*1.5+Math.log10((o.v||0)+1)*1.5+(o.mp?3:0);cand.push([s,o]);}
+  cand.sort((a,b)=>b[0]-a[0]);const top=[],vistos=new Set();
+  for(const [,o] of cand){const k=sa(o.t).split(' ').slice(0,3).join(' ');if(vistos.has(k))continue;vistos.add(k);top.push(o);if(top.length===3)break;}
+  return top.map(o=>({o,porque:motivos(o,top)}));
+}
+let URL_IA='';fetch('assistente.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(d=>{URL_IA=(d&&d.url)||'';}).catch(()=>{});
+async function perguntarIA(q,lista){
+  if(!URL_IA)return null;
+  try{const r=await fetch(URL_IA,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pergunta:q})});if(!r.ok)return null;
+    const d=await r.json();const por=new Map(lista.map(o=>[o.id,o]));
+    return (d.escolhas||[]).map(e=>({o:por.get(e.id),porque:e.porque})).filter(x=>x.o).slice(0,3);}catch(e){return null;}
+}
+function cartao(x){const o=x.o;return '<a class="ar" href="'+esc(o.u)+'" target="_blank" rel="sponsored noopener" data-oferta="'+esc(o.id)+'"><img src="'+esc(o.img)+'" alt="" loading="lazy"><div><b class="t">'+esc(o.t)+'</b><span class="pr">'+brl(o.p)+'</span><span class="pq">💡 '+esc(x.porque)+'</span></div></a>';}
+function montar(lista){
+  if(document.getElementById('assistente'))return;
+  const s=document.createElement('section');s.className='assist';s.id='assistente';s.setAttribute('aria-label','Assistente de compras');
+  s.innerHTML='<div class="assist-in"><h2>🤖 Diga o que você precisa. A gente acha o melhor preço.</h2>'+
+   '<p class="sub">Escreva do seu jeito: para quem é, quanto quer gastar e o que precisa. Mostramos as 3 melhores opções e o porquê.</p>'+
+   '<form id="assistForm"><label class="so-leitor" for="assistQ">O que você procura?</label><input id="assistQ" autocomplete="off" placeholder="Ex.: presente para minha mãe que adora cozinhar, até R$ 100"><button type="submit">Encontrar</button></form>'+
+   '<div class="assist-ex"><button type="button">perfume feminino até R$ 80</button><button type="button">air fryer para casal</button><button type="button">kit de ferramentas para casa até R$ 150</button><button type="button">skincare para pele oleosa</button></div>'+
+   '<div class="assist-msg" id="assistMsg" aria-live="polite"></div><div class="assist-res" id="assistRes"></div></div>';
+  const radar=document.getElementById('radarQuedas'),topo=document.getElementById('topoFixo');
+  const ref=radar||topo;(ref&&ref.parentNode)?ref.parentNode.insertBefore(s,ref.nextSibling):document.body.prepend(s);
+  const f=s.querySelector('#assistForm'),q=s.querySelector('#assistQ'),res=s.querySelector('#assistRes'),msg=s.querySelector('#assistMsg');
+  async function buscar(texto){
+    texto=(texto||'').trim();if(!texto){q.focus();return;}
+    msg.textContent='Procurando entre '+lista.length.toLocaleString('pt-BR')+' ofertas...';res.innerHTML='';
+    let r=await perguntarIA(texto,lista);if(!r||!r.length)r=local(texto,lista);
+    if(!r.length){msg.textContent='Não achei nada com esse pedido. Tente outras palavras ou um valor maior.';return;}
+    msg.textContent='As 3 melhores opções para “'+texto+'”:';res.innerHTML=r.map(cartao).join('');
+  }
+  f.addEventListener('submit',e=>{e.preventDefault();buscar(q.value);});
+  s.querySelectorAll('.assist-ex button').forEach(b=>b.addEventListener('click',()=>{q.value=b.textContent;buscar(b.textContent);}));
+}
+let tent=0;const t=setInterval(function(){const lista=window.OFERTAS_CARREGADAS||window.OFERTAS||null;
+  if(lista&&lista.length&&(document.getElementById('radarQuedas')||tent>10)){clearInterval(t);montar(lista);}else if(++tent>90)clearInterval(t);},150);
+})();</script><script>(function(){
 const DIA=86400,MAX_QUEDA=70;
 function brl(v){return 'R$ '+Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function esc(t){return String(t||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}

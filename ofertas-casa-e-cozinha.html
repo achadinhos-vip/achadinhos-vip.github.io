@@ -292,6 +292,11 @@ main.wrap{padding-top:10px}
 .ar .pq{font-size:12.5px;color:#065F46;background:#ECFDF3;border-radius:8px;padding:5px 7px;line-height:1.35}
 .ar .pr{font:900 18px/1 Montserrat,system-ui,sans-serif}
 .assist-msg{margin-top:10px;color:#C9D3E0;font-size:13.5px}
+.assist-fontes{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px;font-size:13.5px;color:#C9D3E0}
+.assist-fontes label{display:inline-flex;align-items:center;gap:7px;min-height:36px;padding:0 12px;border-radius:999px;background:#1C2D44;border:1px solid #2E4562;color:#fff;font-weight:700;cursor:pointer}
+.assist-fontes input{width:18px;height:18px;flex:none;accent-color:#FFCF16;margin:0;padding:0}
+.assist-res h3{grid-column:1/-1;margin:6px 0 0;font:800 15px/1.2 Montserrat,system-ui,sans-serif;color:#FFCF16}
+.ar .lj{font-size:11.5px;font-weight:800;color:#6B7A90}
 
 .radar{background:linear-gradient(135deg,#7A0A14 0%,#B3121F 55%,#E11D2E 100%);color:#fff;padding:22px 0 18px;position:relative;overflow:hidden}
 .radar:before{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;border:2px solid rgba(255,255,255,.12);box-shadow:0 0 0 40px rgba(255,255,255,.04),0 0 0 90px rgba(255,255,255,.03)}
@@ -1109,20 +1114,23 @@ function local(q,lista){
   for(const [,o] of cand){const k=sa(o.t).split(' ').slice(0,3).join(' ');if(vistos.has(k))continue;vistos.add(k);top.push(o);if(top.length===3)break;}
   return top.map(o=>({o,porque:motivos(o,top)}));
 }
-let URL_IA='';fetch('assistente.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(d=>{URL_IA=(d&&d.url)||'';}).catch(()=>{});
-async function perguntarIA(q,lista){
+let URL_IA='';const FONTES_EXTRA=[['shopee','Shopee']];
+fetch('assistente.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(d=>{URL_IA=(d&&d.url)||'';const c=document.getElementById('assistFontes');if(c&&URL_IA)c.hidden=false;}).catch(()=>{});
+const NOME_FONTE={vitrine:'Na vitrine do site',shopee:'Direto na Shopee',ml:'Direto no Mercado Livre'};
+async function perguntarIA(q,lista,fontes){
   if(!URL_IA)return null;
-  try{const r=await fetch(URL_IA,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pergunta:q})});if(!r.ok)return null;
+  try{const r=await fetch(URL_IA,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({pergunta:q,fontes:fontes})});if(!r.ok)return null;
     const d=await r.json();const por=new Map(lista.map(o=>[o.id,o]));
-    return (d.escolhas||[]).map(e=>({o:por.get(e.id),porque:e.porque})).filter(x=>x.o).slice(0,3);}catch(e){return null;}
+    return (d.escolhas||[]).map(e=>({o:e.o||por.get(e.id),porque:e.porque,fonte:e.fonte||'vitrine'})).filter(x=>x.o&&x.o.u);}catch(e){return null;}
 }
-function cartao(x){const o=x.o;return '<a class="ar" href="'+esc(o.u)+'" target="_blank" rel="sponsored noopener" data-oferta="'+esc(o.id)+'"><img src="'+esc(o.img)+'" alt="" loading="lazy"><div><b class="t">'+esc(o.t)+'</b><span class="pr">'+brl(o.p)+'</span><span class="pq">💡 '+esc(x.porque)+'</span></div></a>';}
+function cartao(x){const o=x.o,lj=x.fonte&&x.fonte!=='vitrine'?'<span class="lj">'+(x.fonte==='ml'?'Mercado Livre':'Shopee')+'</span>':'';return '<a class="ar" href="'+esc(o.u)+'" target="_blank" rel="sponsored noopener" data-oferta="'+esc(o.id)+'"><img src="'+esc(o.img)+'" alt="" loading="lazy"><div>'+lj+'<b class="t">'+esc(o.t)+'</b><span class="pr">'+brl(o.p)+'</span><span class="pq">💡 '+esc(x.porque)+'</span></div></a>';}
 function montar(lista){
   if(document.getElementById('assistente'))return;
   const s=document.createElement('section');s.className='assist';s.id='assistente';s.setAttribute('aria-label','Assistente de compras');
   s.innerHTML='<div class="assist-in"><h2>🤖 Diga o que você precisa. A gente acha o melhor preço.</h2>'+
    '<p class="sub">Escreva do seu jeito: para quem é, quanto quer gastar e o que precisa. Mostramos as 3 melhores opções e o porquê.</p>'+
    '<form id="assistForm"><label class="so-leitor" for="assistQ">O que você procura?</label><input id="assistQ" autocomplete="off" placeholder="Ex.: presente para minha mãe que adora cozinhar, até R$ 100"><button type="submit">Encontrar</button></form>'+
+   '<div class="assist-fontes" id="assistFontes"'+(URL_IA?'':' hidden')+'><span>Procurar em:</span><label><input type="checkbox" value="vitrine" checked> Vitrine do site</label>'+FONTES_EXTRA.map(f=>'<label><input type="checkbox" value="'+f[0]+'" checked> '+f[1]+'</label>').join('')+'</div>'+
    '<div class="assist-ex"><button type="button">perfume feminino até R$ 80</button><button type="button">air fryer para casal</button><button type="button">kit de ferramentas para casa até R$ 150</button><button type="button">skincare para pele oleosa</button></div>'+
    '<div class="assist-msg" id="assistMsg" aria-live="polite"></div><div class="assist-res" id="assistRes"></div></div>';
   const radar=document.getElementById('radarQuedas'),topo=document.getElementById('topoFixo');
@@ -1130,10 +1138,14 @@ function montar(lista){
   const f=s.querySelector('#assistForm'),q=s.querySelector('#assistQ'),res=s.querySelector('#assistRes'),msg=s.querySelector('#assistMsg');
   async function buscar(texto){
     texto=(texto||'').trim();if(!texto){q.focus();return;}
-    msg.textContent='Procurando entre '+lista.length.toLocaleString('pt-BR')+' ofertas...';res.innerHTML='';
-    let r=await perguntarIA(texto,lista);if(!r||!r.length)r=local(texto,lista);
+    let fontes=[...s.querySelectorAll('#assistFontes input:checked')].map(i=>i.value);if(!URL_IA||!fontes.length)fontes=['vitrine'];
+    const fora=fontes.filter(f=>f!=='vitrine').map(f=>f==='ml'?'Mercado Livre':'Shopee');
+    msg.textContent=fora.length?'Procurando na vitrine e direto na '+fora.join(' e no ')+'...':'Procurando entre '+lista.length.toLocaleString('pt-BR')+' ofertas...';res.innerHTML='';
+    let r=await perguntarIA(texto,lista,fontes);if(!r||!r.length)r=fontes.includes('vitrine')?local(texto,lista):[];
     if(!r.length){msg.textContent='Não achei nada com esse pedido. Tente outras palavras ou um valor maior.';return;}
-    msg.textContent='As 3 melhores opções para “'+texto+'”:';res.innerHTML=r.map(cartao).join('');
+    const grupos=[...new Set(r.map(x=>x.fonte||'vitrine'))];
+    msg.textContent='As melhores opções para “'+texto+'”:';
+    res.innerHTML=grupos.length>1?grupos.map(g=>'<h3>'+NOME_FONTE[g]+'</h3>'+r.filter(x=>(x.fonte||'vitrine')===g).slice(0,3).map(cartao).join('')).join(''):r.slice(0,3).map(cartao).join('');
   }
   f.addEventListener('submit',e=>{e.preventDefault();buscar(q.value);});
   s.querySelectorAll('.assist-ex button').forEach(b=>b.addEventListener('click',()=>{q.value=b.textContent;buscar(b.textContent);}));

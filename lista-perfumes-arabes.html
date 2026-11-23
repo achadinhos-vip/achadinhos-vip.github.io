@@ -297,6 +297,13 @@ main.wrap{padding-top:10px}
 .assist-fontes input{width:18px;height:18px;flex:none;accent-color:#FFCF16;margin:0;padding:0}
 .assist-res h3{grid-column:1/-1;margin:6px 0 0;font:800 15px/1.2 Montserrat,system-ui,sans-serif;color:#FFCF16}
 .ar .lj{font-size:11.5px;font-weight:800;color:#6B7A90}
+.assist-barra{height:6px;border-radius:999px;background:#1C2D44;overflow:hidden;margin-top:12px}
+.assist-barra i{display:block;height:100%;width:0;border-radius:999px;background:#FFCF16;transition:width .4s ease}
+.assist.buscando,.assist.buscando *{cursor:progress}
+.assist.buscando form button{opacity:.75}
+.assist form button .gira{display:inline-block;width:16px;height:16px;margin-right:8px;vertical-align:-3px;border:3px solid rgba(16,28,44,.25);border-top-color:#101C2C;border-radius:50%;animation:assistGira .8s linear infinite}
+@keyframes assistGira{to{transform:rotate(360deg)}}
+@media (prefers-reduced-motion:reduce){.assist form button .gira{animation-duration:2.4s}}
 
 .radar{background:linear-gradient(135deg,#7A0A14 0%,#B3121F 55%,#E11D2E 100%);color:#fff;padding:22px 0 18px;position:relative;overflow:hidden}
 .radar:before{content:"";position:absolute;right:-120px;top:-120px;width:360px;height:360px;border-radius:50%;border:2px solid rgba(255,255,255,.12);box-shadow:0 0 0 40px rgba(255,255,255,.04),0 0 0 90px rgba(255,255,255,.03)}
@@ -437,7 +444,7 @@ main.wrap{padding-top:17px}.clube-nav{margin-bottom:12px}.clube-abas button,.int
   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 3h3l2 12h12l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>Compra direto na loja</span>
   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m10 13 4-4M8 16l-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg>Links de afiliado</span>
 </div></div>
-<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Perfumes árabes até R$ 150</h1><p class="sub-lista">Fragrâncias de marcas árabes até R$ 150. Confira vendedor e detalhes na loja.</p><p class="meta-lista">8 achados selecionados · Atualizada em 22/11/2026 às 22:25</p></div><section class="orcamento" id="orcamento" aria-labelledby="tituloOrcamento" hidden>
+<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Perfumes árabes até R$ 150</h1><p class="sub-lista">Fragrâncias de marcas árabes até R$ 150. Confira vendedor e detalhes na loja.</p><p class="meta-lista">8 achados selecionados · Atualizada em 22/11/2026 às 22:34</p></div><section class="orcamento" id="orcamento" aria-labelledby="tituloOrcamento" hidden>
   <div class="orcamento-cabecalho"><span class="orcamento-contexto" id="orcamentoContexto">Em todas as categorias</span><h2 id="tituloOrcamento">Qual o valor máximo que você quer pagar?</h2></div>
   <div class="orcamento-controles">
     <div class="orcamento-faixa"><label class="so-leitor" for="limiteDeslizante">Ajustar valor máximo; no final da barra, sem limite</label><input id="limiteDeslizante" type="range" min="1" max="2001" step="0.01" value="2001" aria-valuetext="Sem limite de preço"><div class="orcamento-marcas" aria-hidden="true"><span>R$ 1</span><span id="orcamentoMaximo">R$ 2.000,00 · sem limite</span></div></div>
@@ -1133,12 +1140,22 @@ function montar(lista){
    '<form id="assistForm"><label class="so-leitor" for="assistQ">O que você procura?</label><input id="assistQ" autocomplete="off" placeholder="Ex.: presente para minha mãe que adora cozinhar, até R$ 100"><button type="submit">Encontrar</button></form>'+
    '<div class="assist-fontes" id="assistFontes"'+(URL_IA?'':' hidden')+'><span>Procurar em:</span><label><input type="checkbox" value="vitrine" checked> Vitrine do site</label>'+FONTES_EXTRA.map(f=>'<label><input type="checkbox" value="'+f[0]+'" checked> '+f[1]+'</label>').join('')+'</div>'+
    '<div class="assist-ex"><button type="button">perfume feminino até R$ 80</button><button type="button">air fryer para casal</button><button type="button">kit de ferramentas para casa até R$ 150</button><button type="button">skincare para pele oleosa</button></div>'+
-   '<div class="assist-msg" id="assistMsg" aria-live="polite"></div><div class="assist-res" id="assistRes"></div></div>';
+   '<div class="assist-barra" id="assistBarra" hidden><i></i></div><div class="assist-msg" id="assistMsg" aria-live="polite"></div><div class="assist-res" id="assistRes"></div></div>';
   const radar=document.getElementById('radarQuedas'),topo=document.getElementById('topoFixo');
   const ref=radar||topo;(ref&&ref.parentNode)?ref.parentNode.insertBefore(s,ref.nextSibling):document.body.prepend(s);
   const f=s.querySelector('#assistForm'),q=s.querySelector('#assistQ'),res=s.querySelector('#assistRes'),msg=s.querySelector('#assistMsg');
+  const barra=s.querySelector('#assistBarra'),btn=f.querySelector('button[type=submit]');let tempo=null;
+  function carregando(sim){
+    s.classList.toggle('buscando',sim);btn.disabled=sim;barra.hidden=!sim;const i=barra.firstChild;clearInterval(tempo);
+    if(sim){btn.innerHTML='<span class="gira" aria-hidden="true"></span>Procurando...';let v=8;i.style.width=v+'%';tempo=setInterval(()=>{v+=Math.max(0.6,(92-v)*0.08);i.style.width=Math.min(v,92)+'%';},250);}
+    else{btn.textContent='Encontrar';i.style.width='0';}
+  }
   async function buscar(texto){
     texto=(texto||'').trim();if(!texto){q.focus();return;}
+    if(s.classList.contains('buscando'))return;
+    carregando(true);try{await buscar2(texto);}finally{carregando(false);}
+  }
+  async function buscar2(texto){
     let fontes=[...s.querySelectorAll('#assistFontes input:checked')].map(i=>i.value);if(!URL_IA||!fontes.length)fontes=['vitrine'];
     const fora=fontes.filter(f=>f!=='vitrine').map(f=>f==='ml'?'Mercado Livre':'Shopee');
     msg.textContent=fora.length?'Procurando na vitrine e direto na '+fora.join(' e no ')+'...':'Procurando entre '+lista.length.toLocaleString('pt-BR')+' ofertas...';res.innerHTML='';

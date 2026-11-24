@@ -511,7 +511,7 @@ main.wrap{padding-top:17px}.clube-nav{margin-bottom:12px}.clube-abas button,.int
   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 3h3l2 12h12l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>Compra direto na loja</span>
   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m10 13 4-4M8 16l-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg>Links de afiliado</span>
 </div></div>
-<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Presentes de Natal para ele</h1><p class="sub-lista">Perfumes masculinos e itens para cuidar da barba até R$ 150.</p><p class="meta-lista">89 achados selecionados · Atualizada em 24/11/2026 às 11:37</p></div><section class="orcamento" id="orcamento" aria-labelledby="tituloOrcamento" hidden>
+<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Presentes de Natal para ele</h1><p class="sub-lista">Perfumes masculinos e itens para cuidar da barba até R$ 150.</p><p class="meta-lista">89 achados selecionados · Atualizada em 24/11/2026 às 11:46</p></div><section class="orcamento" id="orcamento" aria-labelledby="tituloOrcamento" hidden>
   <div class="orcamento-cabecalho"><span class="orcamento-contexto" id="orcamentoContexto">Em todas as categorias</span><h2 id="tituloOrcamento">Qual o valor máximo que você quer pagar?</h2></div>
   <div class="orcamento-controles">
     <div class="orcamento-faixa"><label class="so-leitor" for="limiteDeslizante">Ajustar valor máximo; no final da barra, sem limite</label><input id="limiteDeslizante" type="range" min="1" max="2001" step="0.01" value="2001" aria-valuetext="Sem limite de preço"><div class="orcamento-marcas" aria-hidden="true"><span>R$ 1</span><span id="orcamentoMaximo">R$ 2.000,00 · sem limite</span></div></div>
@@ -822,7 +822,7 @@ main.wrap{padding-top:17px}.clube-nav{margin-bottom:12px}.clube-abas button,.int
       <div class="card-top"><span class="etq-loja etq-limitada">⏳ Oferta limitada</span>${o.d>0&&o.d<=70&&(precoRef||o.od)?`<span class="etq-desc" title="Desconto informado pela loja">−${o.d}%</span>`:(o.mp?`<span class="etq-desc etq-menor" title="Menor preço que registramos para este produto">Menor preço</span>`:'')}</div>
       <div class="foto-wrap"><a class="img${o.img?'':' sem-foto'}" data-foto ${link} aria-label="Ver ${esc(o.t)} ${destino}">${foto(o)}</a><button type="button" class="salvar" data-salvar="${esc(o.id)}" aria-pressed="${estaSalva(o.id)}" aria-label="${estaSalva(o.id)?'Remover oferta das salvas':'Salvar oferta'}" title="Salvar oferta">${icSalvar}</button><button type="button" class="share" data-share="${esc(o.id)}" aria-label="Compartilhar esta oferta" title="Compartilhar">${icShare}</button></div>
       <div class="info">${o.fr?`<p class="frase">${esc(o.fr)}</p>`:''}<h3><a ${link} title="${esc(o.t)}">${esc(o.t)}</a></h3>
-        <div class="compra">${blocoPreco}<a class="ir" ${link}>Ver oferta ${destino}</a></div>
+        <div class="compra">${blocoPreco}<a class="ir" ${link}>Ver oferta ${destino}</a></div>${o.l==='A'?'':`<button type="button" class="ficha-bt" data-ficha="${esc(o.id)}">🔎 Vale a pena? Ver ficha do produto</button>`}
 ${o.cmp?`<a class="cmp ${o.cmp.p<o.p?'cmp-melhor':''}" href="${esc(o.cmp.u)}" target="_blank" rel="sponsored noopener">⚖️ ${o.cmp.l==='S'?'Na Shopee':'No Mercado Livre'}: <b>R$ ${Number(o.cmp.p).toLocaleString('pt-BR',{minimumFractionDigits:2})}</b>${o.cmp.p<o.p?' · mais barato lá':o.cmp.p>o.p?' · aqui está mais barato':''}</a>`:''}        <div class="prova">${o.n?`<b title="Nota informada pela loja">★ ${String(o.n).replace('.',',')}</b>`:''}${v?`<span>${v} vendidos</span>`:''}</div>
         ${blocoCupom(o)}
         <details class="card-mais"><summary>Detalhes da oferta</summary><div class="card-mais-conteudo">
@@ -1419,6 +1419,68 @@ let tent=0;const t=setInterval(function(){
   const lista=window.OFERTAS_CARREGADAS||window.OFERTAS||null;
   if(lista&&lista.length){clearInterval(t);montar(lista);}else if(++tent>80)clearInterval(t);
 },150);
-})();</script><script>(function(){var q=location.search;if(/[?&](fbclid|utm_source|utm_medium)=/.test(q)&&!window.LISTA_CLUBE){document.body.classList.add('do-anuncio');}})();</script></body>
+})();</script><script>(function(){var q=location.search;if(/[?&](fbclid|utm_source|utm_medium)=/.test(q)&&!window.LISTA_CLUBE){document.body.classList.add('do-anuncio');}})();</script><style>
+.ficha-bt{display:block;width:100%;margin:8px 0 0;font:inherit;font-weight:800;font-size:.9rem;border:1px solid #cbd6e5;border-radius:12px;padding:10px;background:#fff;color:#112c52;cursor:pointer}
+.ficha-bt:hover{background:#f3f6fb}
+#fichaDlg{border:0;border-radius:20px;padding:0;width:min(640px,96vw);max-height:90vh;color:#112c52;box-shadow:0 30px 80px #0006}
+#fichaDlg::backdrop{background:#0b1a2e99}
+#fichaDlg .fc-top{display:flex;justify-content:space-between;gap:10px;align-items:start;padding:16px 18px;border-bottom:1px solid #e1e7ef;position:sticky;top:0;background:#fff}
+#fichaDlg .fc-top h2{font-size:1rem;margin:0;line-height:1.3}#fichaDlg .fc-x{font:inherit;border:0;background:#eef2f7;border-radius:10px;padding:6px 10px;cursor:pointer}
+#fichaDlg .fc-body{padding:4px 18px 18px;overflow:auto;font-size:.9rem;line-height:1.5}
+.fc-load{padding:26px 0;text-align:center;color:#5b6980}.fc-spin{width:34px;height:34px;border:4px solid #e1e7ef;border-top-color:#112c52;border-radius:50%;margin:0 auto 12px;animation:fcg 1s linear infinite}@keyframes fcg{to{transform:rotate(360deg)}}
+.fc-med{margin:12px 0}.fc-rot{display:flex;justify-content:space-between;font-weight:700;font-size:.85rem;margin-bottom:6px}.fc-bar{height:10px;border-radius:999px;background:#e6ebf2;overflow:hidden}.fc-bar i{display:block;height:100%}
+.fc-al{background:#fff6e0;border:1px solid #f1dca6;border-radius:12px;padding:10px 12px 10px 28px;margin:10px 0}.fc-al.grave{background:#fdecea;border-color:#f3c3be}
+.fc-selos{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.fc-selo{font-size:.74rem;font-weight:700;border-radius:999px;padding:3px 9px;border:1px solid #e1e7ef}
+.fc-abas{display:flex;gap:4px;overflow-x:auto;margin:10px 0 6px}.fc-aba{font:inherit;font-size:.8rem;font-weight:700;border:0;background:transparent;color:#5b6980;padding:7px 9px;border-radius:9px;cursor:pointer;white-space:nowrap}
+.fc-aba[aria-selected=true]{background:#e8eef7;color:#112c52}.fc-p{display:none}.fc-p.on{display:block}
+.fc-p table{width:100%;border-collapse:collapse}.fc-p td{padding:6px 3px;border-bottom:1px solid #edf1f6;vertical-align:top}.fc-p td:first-child{color:#5b6980;width:42%}
+.fc-f{font-size:.68rem;font-weight:700;border-radius:6px;padding:1px 6px;margin-left:4px;background:#eef0f3;color:#5b6980}.fc-f.fabricante{background:#e7f6ec;color:#0a7d33}.fc-f.anuncio{background:#e8eef7;color:#2c5fa8}.fc-f.opinioes{background:#f3e9fb;color:#6b3fa0}
+.fc-chk{list-style:none;padding:0;margin:0}.fc-chk li{padding:7px 0;border-bottom:1px solid #edf1f6}.fc-chk small{display:block;color:#5b6980}
+.fc-rod{font-size:.74rem;color:#5b6980;margin-top:12px}
+</style>
+<dialog id="fichaDlg" aria-labelledby="fichaTit"><div class="fc-top"><h2 id="fichaTit">Ficha do produto</h2><button type="button" class="fc-x" data-fc-fechar aria-label="Fechar">✕</button></div><div class="fc-body" id="fichaCorpo"></div></dialog>
+<script>
+(()=>{let base='';const dlg=document.getElementById('fichaDlg'),corpo=document.getElementById('fichaCorpo'),tit=document.getElementById('fichaTit');let atual='';
+fetch('assistente.json',{cache:'no-store'}).then(r=>r.ok?r.json():{}).then(d=>{try{if(d&&d.protocolo==='achadinhos-agentes-v2'&&d.ativo&&new URL(d.url).protocol==='https:')base=String(d.url).replace(/\/$/,'')}catch(e){}}).catch(()=>{});
+const E=s=>String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const slug=id=>String(id).toLowerCase().replace(/[^a-z0-9-]/g,'').slice(0,60);
+const carregando=t=>{corpo.innerHTML='<div class="fc-load"><div class="fc-spin"></div><b>Analisando o produto…</b><br><span>'+E(t||'Abrindo o anúncio')+'</span><br><small>Leva de 30 a 90 segundos na primeira vez.</small></div>'};
+const aviso=t=>{corpo.innerHTML='<div class="fc-load">'+E(t)+'</div>'};
+const conf={alta:['Alta','#0a7d33',85],media:['Média','#b07800',60],baixa:['Baixa','#b3261e',30],dados_insuficientes:['Dados insuficientes','#5b6980',15]};
+const uso={domestico_leve:'🏠 Uso doméstico leve',domestico_frequente:'🏠 Uso doméstico frequente',profissional:'🛠️ Uso profissional',indefinido:''};
+const af={loja_oficial:{sim:['✅','Loja oficial'],nao:['⚠️','Não é loja oficial'],nao_informado:['🔎','Loja oficial não informada']},
+ preco_mercado:{compativel:['✅','Preço compatível com o mercado'],abaixo_suspeito:['⚠️','Preço muito abaixo do mercado'],acima:['ℹ️','Preço acima de outras lojas'],sem_dado:['🔎','Sem comparação de preço']},
+ certificacao:{informada:['✅','Certificação informada'],nao_informada_obrigatoria:['⚠️','Certificação obrigatória não informada'],nao_se_aplica:['✅','Certificação não exigida'],nao_verificado:['🔎','Certificação não verificada']},
+ risco_falsificacao:{baixo:['✅','Risco de falsificação baixo'],medio:['⚠️','Risco de falsificação médio'],alto:['⛔','Risco de falsificação alto'],sem_dado:['🔎','Falsificação: sem dados']},
+ avaliacoes_suspeitas:{nao:['✅','Avaliações com aparência natural'],possivel:['⚠️','Possíveis avaliações artificiais'],sem_dado:['🔎','Avaliações: sem dados']},
+ envio_internacional:{sim:['ℹ️','Envio internacional (prazo maior, possível taxa)'],nao:['✅','Envio nacional'],nao_informado:['🔎','Origem do envio não informada']}};
+function render(doc){const f=doc.ficha||{},c=conf[f.confianca]||conf.dados_insuficientes,a=f.antifraude||{},n=f.opinioes_lidas||0;
+ const attrs=(f.atributos||[]).map(x=>'<tr><td>'+E(x.nome)+'</td><td><b>'+E(x.valor)+'</b><span class="fc-f '+E(x.fonte)+'">'+E(x.fonte)+'</span></td></tr>').join('')||'<tr><td colspan="2">Não informadas pelo vendedor.</td></tr>';
+ const div=(f.divergencias||[]).map(d=>'<li>'+E(d.campo)+': anúncio "'+E(d.no_anuncio)+'" × '+E(d.qual_fonte)+' "'+E(d.em_outra_fonte)+'"</li>').join('');
+ const prob=(f.problemas_relatados||[]).map(p=>'<li>'+E(p.problema)+'<small>citado em '+(+p.ocorrencias||0)+' de '+n+' opiniões lidas</small></li>').join('')||'<li>Nenhum problema recorrente nas opiniões lidas.</li>';
+ const fraude=Object.keys(af).filter(k=>af[k]&&af[k][a[k]]).map(k=>'<li>'+af[k][a[k]][0]+' '+E(af[k][a[k]][1])+(k==='preco_mercado'&&a.faixa_preco_mercado?'<small>'+E(a.faixa_preco_mercado)+'</small>':'')+(k==='certificacao'&&a.certificacao_detalhe?'<small>'+E(a.certificacao_detalhe)+'</small>':'')+(k==='loja_oficial'&&a.vendedor?'<small>Vendedor: '+E(a.vendedor)+'</small>':'')+'</li>').join('');
+ const grave=a.risco_falsificacao==='alto'||a.preco_mercado==='abaixo_suspeito'||a.certificacao==='nao_informada_obrigatoria';
+ const fontes=(f.fontes||[]).map(x=>'<a href="'+E(x.url)+'" target="_blank" rel="nofollow noopener">'+E(x.titulo)+'</a>').join(' · ');
+ corpo.innerHTML='<div class="fc-selos">'+(f.fabricante_confirmado?'<span class="fc-selo" style="color:#0a7d33">✅ Fabricante confirmado</span>':f.generico?'<span class="fc-selo" style="color:#b07800">Produto genérico</span>':'<span class="fc-selo">Fabricante não confirmado</span>')+(uso[f.nivel_uso]?'<span class="fc-selo">'+uso[f.nivel_uso]+'</span>':'')+'</div>'
+ +'<div class="fc-med"><div class="fc-rot"><span>Confiança da ficha</span><span style="color:'+c[1]+'">'+c[0]+'</span></div><div class="fc-bar"><i style="width:'+c[2]+'%;background:'+c[1]+'"></i></div><small>'+E(f.motivo_confianca)+'</small></div>'
+ +((f.alertas||[]).length?'<ul class="fc-al'+(grave?' grave':'')+'">'+f.alertas.map(x=>'<li>'+E(x)+'</li>').join('')+'</ul>':'')
+ +'<div class="fc-abas" role="tablist"><button class="fc-aba" aria-selected="true" data-fc="1">Características</button><button class="fc-aba" aria-selected="false" data-fc="2">Para quem é</button><button class="fc-aba" aria-selected="false" data-fc="3">Problemas relatados</button><button class="fc-aba" aria-selected="false" data-fc="4">Antifraude</button></div>'
+ +'<div class="fc-p on" data-fcp="1"><table>'+attrs+(f.garantia?'<tr><td>Garantia</td><td><b>'+E(f.garantia)+'</b></td></tr>':'')+'</table>'+(div?'<p><b>Divergências entre fontes</b></p><ul>'+div+'</ul>':'')+'</div>'
+ +'<div class="fc-p" data-fcp="2"><p><b>Indicado para:</b> '+E(f.indicado_para||'—')+'</p><p><b>Não indicado para:</b> '+E(f.nao_indicado_para||'—')+'</p>'+((f.pontos_fortes||[]).length?'<p><b>Pontos fortes citados:</b></p><ul>'+f.pontos_fortes.map(x=>'<li>'+E(x)+'</li>').join('')+'</ul>':'')+'</div>'
+ +'<div class="fc-p" data-fcp="3"><p><small>Baseado em '+n+' opiniões lidas'+(f.total_avaliacoes_anuncio?' de '+f.total_avaliacoes_anuncio+' avaliações':'')+'.</small></p><ul class="fc-chk">'+prob+'</ul></div>'
+ +'<div class="fc-p" data-fcp="4"><ul class="fc-chk">'+fraude+'</ul></div>'
+ +'<p class="fc-rod">Fontes: '+(fontes||'anúncio e opiniões de compradores')+'.<br>Atualizada em '+new Date((doc.atualizado_em||0)*1000).toLocaleDateString('pt-BR')+'. Preços e estoque podem mudar. Nada é estimado: o que não tem fonte aparece como não informado.'+(doc.pagina?' <a href="'+E(doc.pagina)+'">Página da ficha</a>':'')+'</p>';}
+async function abrir(id,titulo){atual=id;tit.textContent=titulo||'Ficha do produto';carregando('Procurando a ficha');if(!dlg.open)dlg.showModal();
+ try{const r=await fetch('ficha-'+slug(id)+'.json',{cache:'no-cache'});if(r.ok){const d=await r.json();if(d&&d.estado==='done'&&d.ficha&&atual===id)return render(d)}}catch(e){}
+ if(!base)return aviso('A análise deste produto ainda não está disponível. Tente mais tarde.');
+ let d;try{const r=await fetch(base+'/api/agentes/ficha',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})});d=await r.json();if(!r.ok)return aviso(d.erro||'Análise indisponível agora.')}catch(e){return aviso('Análise indisponível agora. Tente mais tarde.')}
+ for(let i=0;i<60&&atual===id&&dlg.open;i++){if(d.estado==='done'&&d.ficha)return render(d);if(d.estado==='erro')return aviso(d.erro||'Não foi possível analisar agora.');carregando(d.etapa);
+  await new Promise(r=>setTimeout(r,4000));try{const r=await fetch(base+'/api/agentes/ficha/'+encodeURIComponent(id));d=await r.json();if(!r.ok)return aviso(d.erro||'Análise indisponível agora.')}catch(e){}}
+ if(atual===id&&dlg.open)aviso('A análise está demorando. Feche e abra de novo em alguns minutos.');}
+document.addEventListener('click',e=>{const b=e.target.closest('[data-ficha]');if(b){e.preventDefault();const card=b.closest('article');abrir(b.dataset.ficha,card&&card.querySelector('h3,h2')?card.querySelector('h3,h2').textContent.trim():'');return}
+ if(e.target.closest('[data-fc-fechar]')){atual='';dlg.close();return}
+ const t=e.target.closest('.fc-aba');if(t){corpo.querySelectorAll('.fc-aba').forEach(x=>x.setAttribute('aria-selected',x===t));corpo.querySelectorAll('.fc-p').forEach(p=>p.classList.toggle('on',p.dataset.fcp===t.dataset.fc))}});
+dlg.addEventListener('click',e=>{if(e.target===dlg){atual='';dlg.close()}});dlg.addEventListener('close',()=>{atual=''});})();
+</script></body>
 
 </html>

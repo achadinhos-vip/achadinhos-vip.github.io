@@ -391,6 +391,16 @@ html.det-aberto{overflow:hidden}
 .det-fechar:focus-visible,.det-ir:focus-visible{outline:3px solid #1D4ED8;outline-offset:2px}
 @media(max-width:700px){.det{width:100%;height:100%;max-height:100%;border-radius:0}.det-caixa{padding:16px 16px calc(16px + env(safe-area-inset-bottom,0px))}
 .det-topo{grid-template-columns:1fr;gap:14px}.det-foto{width:100%;max-width:100%;aspect-ratio:auto;height:min(78vw,340px);margin:0 auto}.det-foto img{width:96%;height:96%}.det-preco b{font-size:30px}}
+/* celular: os botões do clube já ficam no rodapé fixo; o personagem ocupa a faixa toda */
+@media(max-width:760px){
+body:has(#barraFixa:not([hidden])) #inicio .convite-hero{display:none}
+body:has(#barraFixa:not([hidden])) #inicio{min-height:0}
+body:has(#barraFixa:not([hidden])) #inicio>.wrap{height:auto;min-height:168px;display:flex;align-items:center}
+body:has(#barraFixa:not([hidden])) #inicio .hero-copy{position:static;top:auto;width:54%;margin:0;padding:14px 0 14px max(4px,1%)}
+body:has(#barraFixa:not([hidden])) #inicio h1{font-size:clamp(22px,6.4vw,27px);line-height:1.08;letter-spacing:-.4px;margin:0;text-wrap:balance}
+body:has(#barraFixa:not([hidden])) #inicio .chamada{display:block;margin:8px 0 0;font-size:13px;line-height:1.35;color:#5b4a2a;text-wrap:pretty}
+body:has(#barraFixa:not([hidden])) #inicio:is([data-tema=geral],[data-sem-cena=true]) .hero-mascote{top:6px;bottom:0;left:auto;right:max(10px,3%);height:calc(100% - 6px);width:auto;max-width:48%;transform:none;object-fit:contain;object-position:bottom center}
+}
 .etq-desc.etq-menor{background:#111;color:#FFC700}body.do-anuncio #inicio,body.do-anuncio .sem-spam,body.do-anuncio .garantias,body.do-anuncio .clube-aviso-faixa{display:none!important}@media(max-width:640px){body.do-anuncio #orcamento{display:none!important}}.etq-loja.etq-limitada{background:#FFF1E6;color:#B23C00;border-color:#FFD3B8}.sem-spam{margin:10px 0 0;font-size:12.5px;line-height:1.35;font-weight:600;color:#fff;opacity:.95;text-align:center}.card .frase{font-size:12.5px;line-height:1.35;font-weight:600;color:#C2410C;margin:0 0 4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}/* Apresentação aprovada do Clube: navegação fixa e espaço para os produtos. */
 :root{--bg:#fff8ec;--surface:#fff;--ink:#122035;--muted:#586779;--line:#dce2e8;--nav:#101c2c;--gold:#ffcf16;--brand:#ffcf16;--tema-fundo:#ffe7bd;--tema-suave:#fff1d9;--tema-acento:#92501a}
 body{background:var(--bg);font-size:16px;line-height:1.45}
@@ -501,7 +511,7 @@ main.wrap{padding-top:17px}.clube-nav{margin-bottom:12px}.clube-abas button,.int
   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M2 3h3l2 12h12l2-8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>Compra direto na loja</span>
   <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="m10 13 4-4M8 16l-1 1a4 4 0 0 1-6-6l4-4a4 4 0 0 1 6 0m2 1 1-1a4 4 0 0 1 6 6l-4 4a4 4 0 0 1-6 0"/></svg>Links de afiliado</span>
 </div></div>
-<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Body splash até R$ 30</h1><p class="sub-lista">Body splash até R$ 30 para incluir na sua rotina.</p><p class="meta-lista">80 achados selecionados · Atualizada em 23/11/2026 às 21:52</p></div><section class="orcamento" id="orcamento" aria-labelledby="tituloOrcamento" hidden>
+<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Body splash até R$ 30</h1><p class="sub-lista">Body splash até R$ 30 para incluir na sua rotina.</p><p class="meta-lista">80 achados selecionados · Atualizada em 23/11/2026 às 21:56</p></div><section class="orcamento" id="orcamento" aria-labelledby="tituloOrcamento" hidden>
   <div class="orcamento-cabecalho"><span class="orcamento-contexto" id="orcamentoContexto">Em todas as categorias</span><h2 id="tituloOrcamento">Qual o valor máximo que você quer pagar?</h2></div>
   <div class="orcamento-controles">
     <div class="orcamento-faixa"><label class="so-leitor" for="limiteDeslizante">Ajustar valor máximo; no final da barra, sem limite</label><input id="limiteDeslizante" type="range" min="1" max="2001" step="0.01" value="2001" aria-valuetext="Sem limite de preço"><div class="orcamento-marcas" aria-hidden="true"><span>R$ 1</span><span id="orcamentoMaximo">R$ 2.000,00 · sem limite</span></div></div>

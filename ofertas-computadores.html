@@ -748,6 +748,49 @@ html body #topoFixo #abas{gap:8px}
 @media(max-width:760px){html body #topoFixo #abas .aba,html body #topoFixo .vitrine-cupons{padding:6px 12px}html body #topoFixo #abas{gap:6px}}
 @media(min-width:861px){#radarQuedas.rq2-sec .rq2-trilho.aberta~.rq2-ver{display:block;width:auto;margin:20px auto 0;padding:12px 30px;border-radius:999px}}
 #radarQuedas .rq2-trilho,.lista-escolhidos{scroll-behavior:auto}
+</style><style>
+/* barra Queda de preço */
+#radarQuedas.rq2-sec .rq2-lado{grid-template-columns:auto auto auto;grid-template-areas:"marca metr nav";justify-content:space-between;align-items:center;column-gap:clamp(18px,2.4vw,40px);margin-bottom:24px}
+#radarQuedas .rq3-marca{grid-area:marca;display:flex;align-items:center;gap:clamp(12px,1.6vw,24px);min-width:0}
+#radarQuedas .rq3-radar{width:clamp(58px,7.4vw,118px);height:auto;flex:none;filter:drop-shadow(0 4px 10px #17401733)}
+#radarQuedas .rq3-varre{transform-box:view-box;transform-origin:50% 50%;animation:rq3gira 2.8s linear infinite}
+#radarQuedas .rq3-ponto{animation:rq3pisca 2.8s ease-in-out infinite}
+#radarQuedas .rq3-p2{animation-delay:.9s}#radarQuedas .rq3-p3{animation-delay:1.8s}
+@keyframes rq3gira{to{transform:rotate(360deg)}}
+@keyframes rq3pisca{0%,100%{opacity:.15}40%{opacity:1}}
+#radarQuedas.rq2-sec .rq3-marca h2{margin:0;font:800 clamp(26px,3.5vw,50px)/1 Geist,system-ui,sans-serif;letter-spacing:-.01em;text-transform:uppercase;color:#2e5a2b;white-space:nowrap}
+#radarQuedas.rq2-sec .rq2-metr{grid-area:metr;display:flex;border:0;gap:0}
+#radarQuedas.rq2-sec .rq2-metr>div{padding:0 clamp(16px,2.6vw,40px);text-align:center}
+#radarQuedas.rq2-sec .rq2-metr>div+div{border-left:1px solid #dfe5e2}
+#radarQuedas.rq2-sec .rq2-metr b{display:flex;align-items:center;justify-content:center;gap:6px;font:800 clamp(36px,5vw,72px)/1 Geist,system-ui,sans-serif;letter-spacing:-.03em;color:#217a6b}
+#radarQuedas.rq2-sec .rq2-metr small{display:block;margin-top:8px;font:600 clamp(10px,.8vw,12px)/1.2 Geist,system-ui,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#7b8a86}
+#radarQuedas.rq2-sec .rq3-media b{color:#e3101c;font-size:clamp(28px,3.8vw,55px)}
+#radarQuedas.rq2-sec .rq3-media small{color:#7b8a86}
+#radarQuedas .rq3-seta-box{position:relative;display:inline-block;height:.82em;width:.42em;margin-left:4px}
+#radarQuedas .rq3-seta{position:absolute;inset:0;height:100%;width:100%;animation:rq3desce 1s cubic-bezier(.5,0,.3,1) infinite}
+#radarQuedas .rq3-rastro{opacity:.25;animation-delay:.12s;filter:blur(.5px)}
+@keyframes rq3desce{0%{transform:translateY(-9px);opacity:0}25%{opacity:1}70%{transform:translateY(7px);opacity:1}100%{transform:translateY(12px);opacity:0}}
+#radarQuedas .rq3-tit{display:flex;flex-direction:column;gap:8px;min-width:0}
+#radarQuedas .rq3-vivo{display:inline-flex;align-items:center;gap:8px;font:500 clamp(11px,.95vw,14px)/1.3 Geist,system-ui,sans-serif;color:#5c6b66}
+#radarQuedas .rq3-vivo i{width:8px;height:8px;border-radius:50%;background:#18a957;box-shadow:0 0 0 0 #18a95766;animation:rq3pulso 1.6s ease-out infinite;flex:none}
+@keyframes rq3pulso{0%{box-shadow:0 0 0 0 #18a95799}100%{box-shadow:0 0 0 9px #18a95700}}
+#radarQuedas.rq2-sec .rq2-metr b{font-variant-numeric:tabular-nums}
+#radarQuedas.rq2-sec .rq2-nav{grid-area:nav;display:grid;grid-template-columns:auto auto;justify-items:end;align-items:center;gap:10px}
+#radarQuedas.rq2-sec .rq2-nav .rq2-todas{grid-column:1/-1;justify-self:end;margin:2px 0 0}
+@media(min-width:861px) and (max-width:1180px){
+#radarQuedas.rq2-sec .rq2-lado{grid-template-columns:1fr auto;grid-template-areas:"marca nav" "metr metr";row-gap:16px}
+#radarQuedas.rq2-sec .rq2-metr{justify-content:flex-start}
+#radarQuedas.rq2-sec .rq2-metr>div:first-child{padding-left:0}
+}
+@media(max-width:860px){
+#radarQuedas.rq2-sec .rq2-lado{display:grid;grid-template-columns:1fr auto;grid-template-areas:"marca marca" "metr nav";row-gap:14px;align-items:end}
+#radarQuedas.rq2-sec .rq2-metr{justify-content:flex-start}
+#radarQuedas.rq2-sec .rq2-metr>div:first-child{padding-left:0}
+#radarQuedas.rq2-sec .rq2-metr small{white-space:nowrap}
+#radarQuedas.rq2-sec .rq3-marca h2{font-size:clamp(22px,6.6vw,30px)}
+#radarQuedas.rq2-sec .rq2-nav .rq2-seta{display:none}
+#radarQuedas.rq2-sec .rq2-nav{display:block;padding-bottom:4px}
+}
 </style></head>
 <body data-tema="computadores">
 <a class="pular" href="#filtro">Ir para as ofertas</a>
@@ -1783,9 +1826,9 @@ function montar(lista){
   const media=Math.round(r.reduce((a,x)=>a+x.q,0)/r.length);
   const s=document.createElement('section');s.className='rq2-sec';s.id='radarQuedas';s.setAttribute('aria-label','Radar de quedas de preço');
   const sv=(d,l)=>'<button type="button" class="rq2-seta" data-d="'+d+'" aria-label="'+l+'"><svg width="18" height="18" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="'+(d<0?'M10 3L5 8l5 5':'M6 3l5 5-5 5')+'"/></svg></button>';
-  s.innerHTML='<div class="rq2-in"><div class="rq2-lado"><span class="rq2-sobre"><i class="rq2-vivo"></i>Radar de quedas</span>'+
-   '<h2>Caiu o preço <span>de verdade.</span></h2><p>Conferimos os preços várias vezes por dia. Só entra aqui o que baixou em relação ao preço que nós mesmos registramos.</p>'+
-   '<div class="rq2-metr"><div><b>'+r.length+'</b><small>'+(r.length===1?'queda':'quedas')+' em 7 dias</small></div><div><b>−'+media+'%</b><small>queda média</small></div></div>'+
+  s.innerHTML='<div class="rq2-in"><div class="rq2-lado">'+
+   '<div class="rq3-marca"><svg class="rq3-radar" viewBox="0 0 100 100" aria-hidden="true"><defs><radialGradient id="rq3fundo" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#2f7a2c"/><stop offset="1" stop-color="#173f17"/></radialGradient><linearGradient id="rq3feixe" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8dff7a" stop-opacity="0"/><stop offset="1" stop-color="#8dff7a" stop-opacity=".85"/></linearGradient></defs><circle cx="50" cy="50" r="48" fill="url(#rq3fundo)"/><g fill="none" stroke="#7fdc6c" stroke-opacity=".45" stroke-width=".8"><circle cx="50" cy="50" r="36"/><circle cx="50" cy="50" r="24"/><circle cx="50" cy="50" r="12"/><path d="M50 2v96M2 50h96M16 16l68 68M84 16L16 84"/></g><g class="rq3-varre"><path d="M50 50L50 2A48 48 0 0 1 91.6 26Z" fill="url(#rq3feixe)"/><path d="M50 50L91.6 26" stroke="#b6ff9f" stroke-width="1.4"/></g><circle class="rq3-ponto" cx="70" cy="62" r="2.6" fill="#b6ff9f"/><circle class="rq3-ponto rq3-p2" cx="33" cy="40" r="2.2" fill="#b6ff9f"/><circle class="rq3-ponto rq3-p3" cx="56" cy="28" r="2" fill="#b6ff9f"/><circle cx="50" cy="50" r="2" fill="#b6ff9f"/></svg><div class="rq3-tit"><h2>Queda de preço</h2><span class="rq3-vivo"><i></i>Ao vivo · preços conferidos várias vezes por dia</span></div></div>'+
+   '<div class="rq2-metr"><div><b>'+r.length+'</b><small>'+(r.length===1?'queda':'quedas')+' em 7 dias</small></div><div class="rq3-media"><b>−'+media+'%<span class="rq3-seta-box" aria-hidden="true"><svg class="rq3-seta rq3-rastro" viewBox="0 0 24 48"><path d="M9.5 2h5v29h7.5L12 46 2 31h7.5z" fill="#ff1f2d"/></svg><svg class="rq3-seta" viewBox="0 0 24 48"><path d="M9.5 2h5v29h7.5L12 46 2 31h7.5z" fill="#ff1f2d"/></svg></span></b><small>queda média</small></div></div>'+
    '<div class="rq2-nav">'+sv(-1,'Quedas anteriores')+sv(1,'Próximas quedas')+(r.length>12?'<button type="button" class="rq2-todas" data-todas>Ver todas</button>':'')+'</div></div>'+
    '<div class="rq2-trilho" id="radarLista">'+r.slice(0,12).map(cartao).join('')+'</div>'+
    (r.length>12?'<button type="button" class="rq2-ver" data-todas>Ver as '+r.length+' quedas</button>':'')+
@@ -1906,6 +1949,21 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-aviso]');i
     auto(document.querySelector('.lista-escolhidos'));
     if(++n>60)clearInterval(t);
   },500);
+})();
+</script><script>
+(function(){
+  var n=0,t=setInterval(function(){
+    var bs=document.querySelectorAll('#radarQuedas .rq2-metr b');
+    if(bs.length||++n>80)clearInterval(t);
+    if(!bs.length||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+    bs.forEach(function(b){
+      var tx=[].find.call(b.childNodes,function(x){return x.nodeType===3&&/\d/.test(x.textContent)});if(!tx)return;
+      var orig=tx.textContent,alvo=parseInt(orig.replace(/\D/g,''),10);if(!alvo)return;
+      var ini=null;function passo(ts){if(!ini)ini=ts;var k=Math.min(1,(ts-ini)/1100),v=Math.round(alvo*(1-Math.pow(1-k,3)));
+        tx.textContent=orig.replace(/\d+/,v);if(k<1)requestAnimationFrame(passo);else tx.textContent=orig;}
+      tx.textContent=orig.replace(/\d+/,'0');requestAnimationFrame(passo);
+    });
+  },150);
 })();
 </script></body>
 

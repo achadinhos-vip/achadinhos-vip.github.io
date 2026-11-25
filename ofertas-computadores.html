@@ -698,6 +698,18 @@ body:has(main.lista-pagina) #topoFixo .vitrine-cupons{display:none}
 @media(max-width:860px){#radarQuedas.rq2-sec .rq2-lado p{display:none}#radarQuedas.rq2-sec h2{margin:10px 0 12px}}
 body>section.listas,#topoFixo~section.listas{max-width:1280px;margin:6px auto 10px;padding:0 clamp(16px,3vw,38px);box-sizing:border-box}
 @media(max-width:860px){body>section.listas,#topoFixo~section.listas{padding:0 16px}}
+</style><style>
+.cupom-faixa{margin:8px 0 2px;border:1px dashed #0f6b4f;border-radius:12px;padding:8px 10px;background:#f2f8f5;display:grid;grid-template-columns:1fr auto;align-items:center;gap:2px 10px;font-size:.8rem;color:#16202e}
+.cupom-faixa .cf-rot{font-size:.68rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#0f6b4f}
+.cupom-faixa code{grid-column:1;font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-weight:700;font-size:.95rem;letter-spacing:.04em;color:#16202e;background:none;padding:0}
+.cupom-faixa b{grid-column:1;font-weight:700}
+.cupom-faixa button{grid-column:2;grid-row:1/3;font:inherit;font-weight:600;font-size:.76rem;border:0;border-radius:9px;padding:8px 10px;background:#0f6b4f;color:#fff;cursor:pointer}
+.cupom-faixa button:active{transform:scale(.97)}
+.cupom-faixa small{grid-column:1/-1;font-size:.72rem;color:#4a5566;line-height:1.35}
+.cupom-faixa small .cf-urg{color:#b4361f;font-weight:600}
+.cupom-faixa.cupom-exp{border-color:#c9ccd2;background:#f3f3f1;color:#7a828e;grid-template-columns:1fr}
+.cupom-faixa.cupom-exp .cf-rot{color:#7a828e}
+.cupom-faixa.cupom-exp s{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.85rem}
 </style></head>
 <body data-tema="computadores">
 <a class="pular" href="#filtro">Ir para as ofertas</a>
@@ -1046,12 +1058,21 @@ body>section.listas,#topoFixo~section.listas{max-width:1280px;margin:6px auto 10
   }
   function cupomValido(o){
     const c=o.cupom;
-    return c && (!c.expira || c.expira>Date.now()/1000) ? c : null;
+    return c && !c.expirado && (!c.expira || c.expira>Date.now()/1000) ? c : null;
+  }
+  function quandoCupom(ts){
+    const d=new Date(ts*1000),hoje=new Date(),am=new Date(Date.now()+864e5),mesmo=(a,b)=>a.toDateString()===b.toDateString();
+    const h=d.toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit'});
+    return (mesmo(d,hoje)?'hoje':mesmo(d,am)?'amanhã':d.toLocaleDateString('pt-BR',{day:'2-digit',month:'2-digit'}))+' às '+h;
   }
   function blocoCupom(o){
-    const c=cupomValido(o); if(!c) return '';
-    const quando=c.expira ? `<p>Validade informada: ${esc(new Date(c.expira*1000).toLocaleDateString('pt-BR'))}.</p>` : '';
-    return `<details class="cupom-detalhes"><summary>${c.codigo?'Cupom disponível':'Cupom na loja'}<span aria-hidden="true">+</span></summary><div class="cupom-conteudo">${c.codigo?`<div class="cupom-codigo"><code>${esc(c.codigo)}</code><button type="button" data-copiar="${esc(o.id)}">Copiar cupom</button></div>`:`<b>${esc(c.texto)}</b><p>Ative o cupom na página da loja.</p>`}${c.codigo?'<p>Copie o código, abra a oferta e aplique no campo de cupom antes de pagar. Confira se o desconto entrou no total.</p>':'<p>Abra a oferta, ative o cupom disponível na loja e confira o desconto antes de pagar.</p>'}<p>${esc(c.condicoes || "Confira os requisitos e a disponibilidade na loja.")}</p>${quando}</div></details>`;
+    const c=o.cupom; if(!c) return '';
+    if(!cupomValido(o)) return `<div class="cupom-faixa cupom-exp"><span class="cf-rot">Cupom expirado</span>${c.codigo?`<s>${esc(c.codigo)}</s>`:''}</div>`;
+    const resta=c.expira?c.expira-Date.now()/1000:0;
+    const quando=c.expira?(resta<6*3600?`<span class="cf-urg">Expira ${quandoCupom(c.expira)}</span>`:`Expira ${quandoCupom(c.expira)}`):'Validade não informada pela loja';
+    const regras=[c.minimo?'compra mínima R$ '+brl(c.minimo):'',c.maximo?'desconto máximo R$ '+brl(c.maximo):''].filter(Boolean).join(' · ');
+    const valor=c.texto&&c.texto!=='Cupom '+c.codigo?' · '+esc(c.texto):'';
+    return `<div class="cupom-faixa"><span class="cf-rot">Cupom${c.codigo?'':' na loja'}</span>${c.codigo?`<code>${esc(c.codigo)}</code><button type="button" data-copiar="${esc(o.id)}">Copiar</button>`:`<b>${esc(c.texto)}</b>`}<small>${quando}${regras?' · '+regras:''}${c.codigo?valor:''}</small></div>`;
   }
   function card(o, especial=false){
     const v=vend(o.v||0), precoRef=o.de>o.p, nome=o.l==='A'?'Amazon':o.l==='S'?'Shopee':'Mercado Livre', destino=o.l==='A'?'na Amazon':o.l==='S'?'na Shopee':'no Mercado Livre';
@@ -1607,22 +1628,23 @@ const agora=Date.now(),entrou=+ler('avip_grupo_entrou')||0,fechou=+ler('avip_sai
 const forcar=/[?&]popup=1(&|$)/.test(location.search);
 if(!forcar&&(sess('avip_saida_vista')||sess('avip_grupo_sessao')))return;
 const inicio=agora;let feito=false;
-function mostrar(){if(feito||Date.now()-inicio<8000||document.querySelector('dialog[open]'))return;feito=true;marcar('avip_saida_vista');dlg.showModal();soltar();}
+function mostrar(){if(feito||Date.now()-inicio<3000||document.querySelector('dialog[open]'))return;feito=true;marcar('avip_saida_vista');dlg.showModal();soltar();}
 function fechar(){if(dlg.open)dlg.close();}
 dlg.addEventListener('close',()=>{gravar('avip_saida_fechou',String(Date.now()))});
 dlg.addEventListener('click',e=>{if(e.target===dlg||e.target.closest('[data-sc-fechar]'))fechar()});
 document.addEventListener('click',e=>{const a=e.target.closest('a[data-canal^="whatsapp"],a[data-canal^="telegram"]');if(a){gravar('avip_grupo_entrou',String(Date.now()));marcar('avip_grupo_sessao');if(dlg.open)setTimeout(fechar,150)}});
 if(forcar){setTimeout(()=>{if(!dlg.open)dlg.showModal()},800);return;}
 const fino=matchMedia('(pointer:fine)').matches;
-function saidaMouse(e){if(!e.relatedTarget&&e.clientY<=8)mostrar()}
+function saidaMouse(e){if(!e.relatedTarget&&e.clientY<=20)mostrar()}
 let maxY=0,ref=null;
 function rolagem(){const y=scrollY,t=performance.now();maxY=Math.max(maxY,y);
- if(maxY<900||y>maxY-150){ref=null;return}
- if(!ref||y>ref.y){ref={y,t};return}
- if(ref.y-y>450&&t-ref.t<700)mostrar();else if(t-ref.t>=700)ref={y,t}}
-function soltar(){document.removeEventListener('mouseout',saidaMouse);removeEventListener('scroll',rolagem)}
-if(!fino&&history.pushState){setTimeout(()=>{if(feito)return;try{history.pushState({avipSaida:1},'',location.href)}catch(e){return}addEventListener('popstate',function voltar(){removeEventListener('popstate',voltar);if(!feito&&!document.querySelector('dialog[open]')){feito=true;marcar('avip_saida_vista');dlg.showModal();soltar();}else history.back();});},8000);}
-if(fino)document.addEventListener('mouseout',saidaMouse);else addEventListener('scroll',rolagem,{passive:true});
+ if(maxY<600){ref=null;return}
+ if(!ref||y>=ref.y){ref={y,t};return}
+ if(ref.y-y>300&&t-ref.t<700)mostrar();else if(t-ref.t>=700)ref={y,t}}
+function soltar(){document.removeEventListener('mouseout',saidaMouse);removeEventListener('scroll',rolagem);document.removeEventListener('visibilitychange',volta)}
+let saiu=false;function volta(){if(document.hidden){if(Date.now()-inicio>=3000)saiu=true}else if(saiu){saiu=false;setTimeout(mostrar,400)}}
+if(!fino&&history.pushState){setTimeout(()=>{if(feito)return;try{history.pushState({avipSaida:1},'',location.href)}catch(e){return}addEventListener('popstate',function voltar(){removeEventListener('popstate',voltar);if(!feito&&!document.querySelector('dialog[open]')){feito=true;marcar('avip_saida_vista');dlg.showModal();soltar();}else history.back();});},3000);}
+document.addEventListener('mouseout',saidaMouse);if(!fino){addEventListener('scroll',rolagem,{passive:true});document.addEventListener('visibilitychange',volta);}
 })();</script><script>(function(){
 const DIA=86400,MAX_QUEDA=70;
 function brl(v){return 'R$ '+Number(v).toLocaleString('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});}

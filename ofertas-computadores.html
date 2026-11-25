@@ -710,6 +710,9 @@ body>section.listas,#topoFixo~section.listas{max-width:1280px;margin:6px auto 10
 .cupom-faixa.cupom-exp{border-color:#c9ccd2;background:#f3f3f1;color:#7a828e;grid-template-columns:1fr}
 .cupom-faixa.cupom-exp .cf-rot{color:#7a828e}
 .cupom-faixa.cupom-exp s{font-family:"Geist Mono",ui-monospace,Menlo,monospace;font-size:.85rem}
+</style><style>
+#radarQuedas.rq2-sec .rq2-foto{aspect-ratio:1/1;background:#fff}
+#radarQuedas.rq2-sec .rq2-foto img{width:100%;height:100%;object-fit:cover;mix-blend-mode:normal}
 </style></head>
 <body data-tema="computadores">
 <a class="pular" href="#filtro">Ir para as ofertas</a>
@@ -1626,11 +1629,11 @@ const ler=k=>{try{return localStorage.getItem(k)}catch(e){return null}},gravar=(
 const sess=k=>{try{return sessionStorage.getItem(k)}catch(e){return null}},marcar=k=>{try{sessionStorage.setItem(k,'1')}catch(e){}};
 const agora=Date.now(),entrou=+ler('avip_grupo_entrou')||0,fechou=+ler('avip_saida_fechou')||0;
 const forcar=/[?&]popup=1(&|$)/.test(location.search);
-if(!forcar&&(sess('avip_saida_vista')||sess('avip_grupo_sessao')))return;
+if(!forcar&&(sess('avip_grupo_sessao')||Date.now()-(+sess('avip_saida_fechou_s')||0)<10*60e3))return;
 const inicio=agora;let feito=false;
 function mostrar(){if(feito||Date.now()-inicio<3000||document.querySelector('dialog[open]'))return;feito=true;marcar('avip_saida_vista');dlg.showModal();soltar();}
 function fechar(){if(dlg.open)dlg.close();}
-dlg.addEventListener('close',()=>{gravar('avip_saida_fechou',String(Date.now()))});
+dlg.addEventListener('close',()=>{gravar('avip_saida_fechou',String(Date.now()));try{sessionStorage.setItem('avip_saida_fechou_s',String(Date.now()))}catch(e){}});
 dlg.addEventListener('click',e=>{if(e.target===dlg||e.target.closest('[data-sc-fechar]'))fechar()});
 document.addEventListener('click',e=>{const a=e.target.closest('a[data-canal^="whatsapp"],a[data-canal^="telegram"]');if(a){gravar('avip_grupo_entrou',String(Date.now()));marcar('avip_grupo_sessao');if(dlg.open)setTimeout(fechar,150)}});
 if(forcar){setTimeout(()=>{if(!dlg.open)dlg.showModal()},800);return;}
@@ -1681,7 +1684,7 @@ function grafCard(h,p){
 function cartao(r,k){
   const o=r.o,loja=NOME_LOJA[o.l]||'loja',menor=Math.min(...r.h.map(x=>x[1]));
   const ficha=o.l!=='A'&&document.getElementById('fichaDlg')?'<button type="button" class="rq2-ficha" data-ficha="'+esc(o.id)+'">Ficha do produto</button>':'';
-  return '<article class="rq2-card'+(k===0?' maior':'')+'" style="--i:'+(k%12)+'" role="button" tabindex="0" data-det="'+esc(o.id)+'" aria-label="Ver detalhes e histórico de preço: '+esc(o.t)+'">'+
+  return '<article class="rq2-card" style="--i:'+(k%12)+'" role="button" tabindex="0" data-det="'+esc(o.id)+'" aria-label="Ver detalhes e histórico de preço: '+esc(o.t)+'">'+
     '<div class="rq2-foto">'+(o.img?'<img src="'+esc(o.img)+'" alt="" loading="lazy">':'')+'<span class="rq2-corte">−'+r.q+'%</span><span class="rq2-loja">'+esc(loja)+'</span></div>'+
     '<div class="rq2-info"><h3>'+esc(o.t)+'</h3><div class="rq2-preco"><span class="rq2-hoje">'+brl(o.p)+'</span><span class="rq2-antes">'+brl(r.pico[1])+'</span></div>'+
     '<div class="rq2-eco">'+brl(r.pico[1]-o.p)+' abaixo do nosso registro</div>'+(o.p<=menor+0.005?'<div class="rq2-min"><b>Menor preço</b> que registramos para este produto</div>':'')+

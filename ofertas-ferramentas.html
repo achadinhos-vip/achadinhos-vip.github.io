@@ -681,6 +681,23 @@ body:has(main.lista-pagina) #topoFixo .vitrine-cupons{display:none}
   .vitrine-resultados .cabecalho-lista{flex-basis:100%}
   #filtro .card .compra{gap:2px}
 }
+</style><style>
+@media(min-width:861px){
+#radarQuedas.rq2-sec .rq2-in{display:block;max-width:1280px;margin:0 auto;padding:30px clamp(16px,3vw,38px) 26px}
+#radarQuedas.rq2-sec .rq2-lado{display:grid;grid-template-columns:minmax(0,auto) minmax(0,1fr) auto auto;grid-template-areas:"sobre sobre metr nav" "tit txt metr nav";align-items:end;column-gap:36px;padding:0;margin-bottom:22px}
+#radarQuedas.rq2-sec .rq2-sobre{grid-area:sobre}
+#radarQuedas.rq2-sec h2{grid-area:tit;margin:10px 0 0;font-size:2.1rem;white-space:nowrap}
+#radarQuedas.rq2-sec .rq2-lado p{grid-area:txt;margin:0;max-width:52ch;font-size:.88rem}
+#radarQuedas.rq2-sec .rq2-metr{grid-area:metr;border:0;display:flex;gap:0}
+#radarQuedas.rq2-sec .rq2-metr div{padding:0 22px}
+#radarQuedas.rq2-sec .rq2-metr div:first-child{padding-left:0}
+#radarQuedas.rq2-sec .rq2-nav{grid-area:nav;margin:0;padding:0}
+#radarQuedas.rq2-sec .rq2-trilho{padding:2px 2px 8px}
+#radarQuedas.rq2-sec .rq2-rod{margin:4px 0 0}
+}
+@media(max-width:860px){#radarQuedas.rq2-sec .rq2-lado p{display:none}#radarQuedas.rq2-sec h2{margin:10px 0 12px}}
+body>section.listas,#topoFixo~section.listas{max-width:1280px;margin:6px auto 10px;padding:0 clamp(16px,3vw,38px);box-sizing:border-box}
+@media(max-width:860px){body>section.listas,#topoFixo~section.listas{padding:0 16px}}
 </style></head>
 <body data-tema="ferramentas">
 <a class="pular" href="#filtro">Ir para as ofertas</a>
@@ -1380,7 +1397,7 @@ ${o.cmp?`<a class="cmp ${o.cmp.p<o.p?'cmp-melhor':''}" href="${esc(o.cmp.u)}" ta
   const nav=document.getElementById('clubeNav');if(!nav)return;
   let todas=[],selecao=window.CLUBE_SELECAO||{cat:window.CAT_INICIAL||'',linha:'',faixa:0};
   const esc=t=>String(t||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const sec=document.createElement('section');sec.className='listas';sec.hidden=true;(document.getElementById('explorar')||nav).before(sec);
+  const sec=document.createElement('section');sec.className='listas';sec.hidden=true;{const rq=document.getElementById('radarQuedas'),tp=document.getElementById('topoFixo');if(rq)rq.after(sec);else if(tp)tp.after(sec);else (document.getElementById('explorar')||nav).before(sec);}
   function preparar(L){
     if(selecao.cat&&!(L.categorias||[]).includes(selecao.cat))return null;
     if(selecao.linha&&!(L.linhas||[]).includes(selecao.linha))return null;
@@ -1569,7 +1586,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 <dialog id="saidaClube" aria-labelledby="scTitulo"><div class="sc-in">
 <button type="button" class="sc-x" data-sc-fechar aria-label="Fechar"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg></button>
 <span class="sc-tag"><i></i>Grupos VIP · grátis</span>
-<h2 id="scTitulo">Antes de sair, venha fazer parte dos nossos <span>grupos de ofertas VIP</span></h2>
+<h2 id="scTitulo">Faça parte dos <span>grupos VIP</span></h2>
 <p>As melhores quedas de preço chegam primeiro nos grupos. <b class="sc-sem">Grupo sem spam, apenas ofertas reais.</b></p>
 <ul class="sc-lista">
 <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8.5l3 3 7-7"/></svg>Alertas de preço que caiu de verdade</li>
@@ -1588,13 +1605,13 @@ const ler=k=>{try{return localStorage.getItem(k)}catch(e){return null}},gravar=(
 const sess=k=>{try{return sessionStorage.getItem(k)}catch(e){return null}},marcar=k=>{try{sessionStorage.setItem(k,'1')}catch(e){}};
 const agora=Date.now(),entrou=+ler('avip_grupo_entrou')||0,fechou=+ler('avip_saida_fechou')||0;
 const forcar=/[?&]popup=1(&|$)/.test(location.search);
-if(!forcar&&(agora-entrou<30*864e5||agora-fechou<3*864e5||sess('avip_saida_vista')))return;
+if(!forcar&&(sess('avip_saida_vista')||sess('avip_grupo_sessao')))return;
 const inicio=agora;let feito=false;
 function mostrar(){if(feito||Date.now()-inicio<8000||document.querySelector('dialog[open]'))return;feito=true;marcar('avip_saida_vista');dlg.showModal();soltar();}
 function fechar(){if(dlg.open)dlg.close();}
 dlg.addEventListener('close',()=>{gravar('avip_saida_fechou',String(Date.now()))});
 dlg.addEventListener('click',e=>{if(e.target===dlg||e.target.closest('[data-sc-fechar]'))fechar()});
-document.addEventListener('click',e=>{const a=e.target.closest('a[data-canal^="whatsapp"],a[data-canal^="telegram"]');if(a){gravar('avip_grupo_entrou',String(Date.now()));if(dlg.open)setTimeout(fechar,150)}});
+document.addEventListener('click',e=>{const a=e.target.closest('a[data-canal^="whatsapp"],a[data-canal^="telegram"]');if(a){gravar('avip_grupo_entrou',String(Date.now()));marcar('avip_grupo_sessao');if(dlg.open)setTimeout(fechar,150)}});
 if(forcar){setTimeout(()=>{if(!dlg.open)dlg.showModal()},800);return;}
 const fino=matchMedia('(pointer:fine)').matches;
 function saidaMouse(e){if(!e.relatedTarget&&e.clientY<=8)mostrar()}
@@ -1604,6 +1621,7 @@ function rolagem(){const y=scrollY,t=performance.now();maxY=Math.max(maxY,y);
  if(!ref||y>ref.y){ref={y,t};return}
  if(ref.y-y>450&&t-ref.t<700)mostrar();else if(t-ref.t>=700)ref={y,t}}
 function soltar(){document.removeEventListener('mouseout',saidaMouse);removeEventListener('scroll',rolagem)}
+if(!fino&&history.pushState){setTimeout(()=>{if(feito)return;try{history.pushState({avipSaida:1},'',location.href)}catch(e){return}addEventListener('popstate',function voltar(){removeEventListener('popstate',voltar);if(!feito&&!document.querySelector('dialog[open]')){feito=true;marcar('avip_saida_vista');dlg.showModal();soltar();}else history.back();});},8000);}
 if(fino)document.addEventListener('mouseout',saidaMouse);else addEventListener('scroll',rolagem,{passive:true});
 })();</script><script>(function(){
 const DIA=86400,MAX_QUEDA=70;
@@ -1719,7 +1737,7 @@ function montar(lista){
    '<div class="rq2-trilho" id="radarLista">'+r.slice(0,12).map(cartao).join('')+'</div>'+
    (r.length>12?'<button type="button" class="rq2-ver" data-todas>Ver as '+r.length+' quedas</button>':'')+
    '<div class="rq2-rod">Economia calculada a partir do histórico de preços registrado pelo Achadinhos VIP.<span>Preços e estoque podem mudar na loja.</span></div></div>';
-  const ref=document.getElementById('avip-agentes')||document.getElementById('filtro');
+  const ref=document.getElementById('topoFixo');
   (ref&&ref.parentNode)?ref.parentNode.insertBefore(s,ref.nextSibling):document.body.prepend(s);
   const L=document.getElementById('radarLista'),porId=new Map(r.map(x=>[String(x.o.id),x.o]));
   const setas=[...s.querySelectorAll('.rq2-seta')],reduzir=()=>matchMedia('(prefers-reduced-motion: reduce)').matches;

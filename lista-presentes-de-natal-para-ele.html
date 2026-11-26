@@ -761,40 +761,28 @@ html body #topoFixo #abas{gap:8px}
 @media(min-width:861px){#radarQuedas.rq2-sec .rq2-trilho.aberta~.rq2-ver{display:block;width:auto;margin:20px auto 0;padding:12px 30px;border-radius:999px}}
 #radarQuedas .rq2-trilho,.lista-escolhidos{scroll-behavior:auto}
 </style><style>
-.vitrine-abertura{grid-template-columns:minmax(0,1fr)!important}
+.vitrine-abertura{grid-template-columns:minmax(0,1fr)!important;padding:12px 0!important;gap:0!important}
 .vitrine-abertura #inicio{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-.vitrine-abertura #orcamento:not([hidden]){width:100%;box-sizing:border-box}
-.oc2-busca{display:flex;gap:8px;max-width:640px;margin:2px 0 4px}
-.oc2-busca input{flex:1;min-width:0;font:inherit;font-size:1rem;padding:11px 14px;border:1.5px solid var(--ink);border-radius:9px;background:#fff;color:var(--ink)}
-.oc2-busca button{font:inherit;font-weight:700;padding:11px 18px;border:0;border-radius:9px;background:var(--ink);color:#fff;cursor:pointer}
-.oc2-busca button:active{transform:scale(.97)}
-.vitrine-abertura #orcamento .oc2-tit{order:0}
-.vitrine-abertura #orcamento .oc2-busca{order:1;max-width:none}
-.vitrine-abertura #orcamento .orcamento-atalhos{order:2}
-.vitrine-abertura #orcamento .orcamento-digitado{order:3}
-.vitrine-abertura #orcamento .oc2-res,.vitrine-abertura #orcamento .orcamento-nota,.vitrine-abertura #orcamento .orcamento-erro{order:4}
-@media(min-width:861px){
-.vitrine-abertura{padding:clamp(18px,2.4vw,32px) 0}
-.vitrine-abertura #orcamento:not([hidden]){grid-template-columns:minmax(0,1.25fr) minmax(0,1fr);column-gap:clamp(24px,4vw,56px);
-  grid-template-areas:"tit tit" "atal busca" "dig busca" "res busca";align-items:center}
-.vitrine-abertura #orcamento .oc2-tit{grid-area:tit}
-.vitrine-abertura #orcamento .oc2-busca{grid-area:busca;margin:0;align-self:center}
-.vitrine-abertura #orcamento .oc2-busca input{padding:16px 18px;font-size:1.08rem}
-.vitrine-abertura #orcamento .oc2-busca button{padding:16px 24px}
-.vitrine-abertura #orcamento .orcamento-atalhos{grid-area:atal}
-.vitrine-abertura #orcamento .orcamento-digitado{grid-area:dig}
-.vitrine-abertura #orcamento .oc2-res,.vitrine-abertura #orcamento .orcamento-nota,.vitrine-abertura #orcamento .orcamento-erro{grid-column:1}
-}
-.vitrine-abertura #orcamento .oc2-tit{font-size:clamp(2.1rem,5vw,4.2rem)!important;line-height:1.02;margin:0 0 6px}
-.vitrine-abertura #orcamento .orcamento-atalhos{gap:10px}
-.vitrine-abertura #orcamento .orcamento-atalhos button{font-size:clamp(1rem,1.5vw,1.22rem)!important;padding:12px 18px!important;border-radius:10px}
-.vitrine-abertura #orcamento .orcamento-input{font-size:clamp(1rem,1.5vw,1.22rem)!important;padding:12px 16px!important;min-width:min(260px,100%)}
-.vitrine-abertura #orcamento #limiteDigitado{font-size:clamp(1rem,1.5vw,1.22rem)!important}
-.vitrine-abertura #orcamento #limiteDigitado::placeholder{font-size:inherit;font-weight:500}
-.vitrine-abertura #orcamento .orcamento-input{height:auto!important;width:min(100%,260px)!important}
-.vitrine-abertura #orcamento .oc2-busca input,.vitrine-abertura #orcamento .oc2-busca button{font-size:clamp(1rem,1.5vw,1.22rem)}
-.vitrine-abertura #orcamento .oc2-res{font-size:clamp(.95rem,1.2vw,1.08rem)!important}
-</style><style>
+.vitrine-abertura #orcamento:not([hidden]){display:flex!important;flex-wrap:wrap;align-items:center;gap:10px;width:100%;box-sizing:border-box;padding:10px 14px!important;border-radius:10px!important}
+.vitrine-abertura #orcamento .oc2-tit{position:absolute!important;width:1px;height:1px;margin:-1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.vitrine-abertura #orcamento .oc2-res,.vitrine-abertura #orcamento .orcamento-nota{display:none!important}
+.vitrine-abertura #orcamento .orcamento-atalhos{display:flex;flex-wrap:nowrap;gap:8px;margin:0}
+.vitrine-abertura #orcamento .orcamento-atalhos button{font-size:1rem!important;padding:9px 16px!important;border-radius:9px;white-space:nowrap}
+.vitrine-abertura #orcamento .orcamento-digitado{margin:0}
+.vitrine-abertura #orcamento .orcamento-input{height:auto!important;width:200px!important;padding:8px 14px!important;font-size:1rem!important}
+.vitrine-abertura #orcamento #limiteDigitado,.vitrine-abertura #orcamento #limiteDigitado::placeholder{font-size:1rem!important}
+.vitrine-abertura #orcamento .orcamento-erro{flex-basis:100%;margin:0}
+.vitrine-abertura #orcamento:not([hidden]){justify-content:center}
+.vitrine-abertura #orcamento .orcamento-erro{text-align:center}
+#vitrineCupons{display:none!important}
+@media(min-width:861px){.categorias-topo .wrap{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px}.categorias-topo #abas{justify-content:center!important}}
+@media(max-width:860px){
+.vitrine-abertura #orcamento:not([hidden]){padding:8px!important;gap:6px}
+.vitrine-abertura #orcamento .orcamento-atalhos{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;width:100%;gap:6px!important;grid-template-columns:none!important}
+.vitrine-abertura #orcamento .orcamento-atalhos button{flex:1 1 0;min-width:0;width:auto!important;font-size:.8rem!important;padding:8px 4px!important}
+.vitrine-abertura #orcamento .orcamento-digitado{width:100%}
+.vitrine-abertura #orcamento .orcamento-input{width:100%!important;padding:6px 10px!important}
+}</style><style>
 .marca-card{display:block;font-size:.7rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;color:#5b6472;margin:2px 0 3px}
 .marcas-chips{display:flex;gap:8px;overflow-x:auto;padding:2px 0 14px;scrollbar-width:none;align-items:center}
 .marcas-chips::-webkit-scrollbar{display:none}
@@ -848,7 +836,7 @@ html body #topoFixo #abas{gap:8px}
   <div class="sublinhas" id="sublinhas" role="group" aria-label="Refinar Beleza e Perfumaria" hidden><button type="button" data-linha="" aria-pressed="true">Tudo</button><button type="button" data-linha="beleza" aria-pressed="false">Beleza</button><button type="button" data-linha="perfumaria" aria-pressed="false">Perfumaria</button></div>
 </div></div>
 </div>
-<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Presentes de Natal para ele</h1><p class="sub-lista">Perfumes masculinos e itens para cuidar da barba até R$ 150.</p><p class="meta-lista">88 achados selecionados · Atualizada em 25/11/2026 às 20:25</p></div><section class="lista-intro" aria-label="Sobre esta lista"><p>Reunimos 88 ofertas de presente de Natal para ele, de R$ 8,90 a R$ 149,99, no Mercado Livre e Shopee, com desconto médio de 41% informado pela loja. Os preços são conferidos várias vezes por dia pelo nosso sistema e a oferta sai da lista quando acaba. Confira valor, frete e prazo na loja antes de finalizar a compra.</p><details><summary>Dicas para escolher</summary><ul><li>Pense no que ele usa no dia a dia: ferramentas, cuidados pessoais, perfume ou tecnologia.</li><li>Em eletrônicos e ferramentas, confira voltagem (127 V, 220 V ou bivolt) e o que vem na caixa.</li><li>Peça até meados de dezembro para o presente chegar antes do dia 24.</li></ul></details></section><div class="vitrine-abertura"><section class="hero" id="inicio" data-tema="beleza" aria-labelledby="tituloHero">
+<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Presentes de Natal para ele</h1><p class="sub-lista">Perfumes masculinos e itens para cuidar da barba até R$ 150.</p><p class="meta-lista">88 achados selecionados · Atualizada em 25/11/2026 às 20:32</p></div><section class="lista-intro" aria-label="Sobre esta lista"><p>Reunimos 88 ofertas de presente de Natal para ele, de R$ 8,90 a R$ 149,99, no Mercado Livre e Shopee, com desconto médio de 41% informado pela loja. Os preços são conferidos várias vezes por dia pelo nosso sistema e a oferta sai da lista quando acaba. Confira valor, frete e prazo na loja antes de finalizar a compra.</p><details><summary>Dicas para escolher</summary><ul><li>Pense no que ele usa no dia a dia: ferramentas, cuidados pessoais, perfume ou tecnologia.</li><li>Em eletrônicos e ferramentas, confira voltagem (127 V, 220 V ou bivolt) e o que vem na caixa.</li><li>Peça até meados de dezembro para o presente chegar antes do dia 24.</li></ul></details></section><div class="vitrine-abertura"><section class="hero" id="inicio" data-tema="beleza" aria-labelledby="tituloHero">
   <figure class="hero-scene" id="cenarioHero" ><img id="cenarioImagem" src="cenario-beleza-52d17fb2c0.webp" alt="Mascote do Clube usando hidratante" decoding="async" fetchpriority="high" onerror="this.closest('.hero').dataset.semCena='true'"></figure>
   <div class="wrap">
     <div class="hero-copy">
@@ -860,7 +848,6 @@ html body #topoFixo #abas{gap:8px}
   </div>
 </section><section class="orcamento oc2" id="orcamento" aria-labelledby="tituloOrcamento" hidden>
   <h2 id="tituloOrcamento" class="oc2-tit">Quanto quer gastar?</h2>
-  <form class="oc2-busca" id="formBuscaOrcamento" role="search"><label for="buscaOrcamento" class="so-leitor">Buscar produto</label><input id="buscaOrcamento" type="search" placeholder="O que você procura?" autocomplete="off"><button type="submit">Buscar</button></form>
   <div class="orcamento-atalhos" id="orcamentoAtalhos" role="group" aria-label="Valor máximo"></div>
   <div class="orcamento-digitado"><label for="limiteDigitado" class="so-leitor">Outro valor máximo, em reais</label><div class="orcamento-input"><span aria-hidden="true">R$</span><input id="limiteDigitado" type="text" inputmode="decimal" placeholder="Outro valor" maxlength="20" autocomplete="off" aria-describedby="orcamentoErro" aria-invalid="false"></div></div>
   <p id="orcamentoResumo" class="oc2-res" role="status" aria-live="polite" aria-atomic="true"></p>
@@ -1401,10 +1388,15 @@ ${o.cmp?`<a class="cmp ${o.cmp.p<o.p?'cmp-melhor':''}" href="${esc(o.cmp.u)}" ta
   const ehPerfume=o=>/perfume|eau de|body splash|col[oô]nia|parfum|deo col/i.test(o.t);
   const ehArabe=o=>ARABES.has(o.mc)||/(^|[^a-z])[aá]rabes?([^a-z]|$)/i.test(o.t);
   const GRUPOS=[['Perfumes',ehPerfume],['Beleza',o=>o.c==='Beleza e Perfumaria'&&!ehPerfume(o)],['Casa e Cozinha',o=>o.c==='Casa e Cozinha'],['Ferramentas',o=>o.c==='Ferramentas'],['Computadores',o=>o.c==='Computadores']];
+  const GRUPO_CAT={'Perfumes':'Beleza e Perfumaria','Beleza':'Beleza e Perfumaria','Casa e Cozinha':'Casa e Cozinha','Ferramentas':'Ferramentas','Computadores':'Computadores'};
+  function gruposVisiveis(){return GRUPOS.filter(([nome])=>!cat||(GRUPO_CAT[nome]===cat&&(!linha||(linha==='perfumaria')===(nome==='Perfumes'))));}
+  function limparSelecaoFora(){if(!SEL.size)return;const ok=new Set(['Árabes']);const vis=gruposVisiveis();
+    OFERTAS.forEach(o=>{if(o.mc&&vis.some(([,f])=>f(o)))ok.add(o.mc);});if(!vis.some(([n])=>n==='Perfumes'))ok.delete('Árabes');
+    [...SEL].forEach(m=>{if(!ok.has(m))SEL.delete(m);});}
   function desenharLateral(){
     const bm=OFERTAS.filter(o=>(!faixa||(o.p>0&&o.p<=faixa))&&(!loja||(o.l||'M')===loja));
     let h=SEL.size?`<button type="button" class="lat-limpar" data-lat-limpar>Limpar (${SEL.size})</button>`:'';
-    for(const [nome,f] of GRUPOS){
+    for(const [nome,f] of gruposVisiveis()){
       const itens=bm.filter(f); if(!itens.length)continue;
       let ms=contarMarcas(itens);
       if(nome==='Perfumes'){const n=itens.filter(ehArabe).length;if(n)ms=[['Árabes',n],...ms];}
@@ -1419,6 +1411,7 @@ ${o.cmp?`<a class="cmp ${o.cmp.p<o.p?'cmp-melhor':''}" href="${esc(o.cmp.u)}" ta
     const m=e.target.closest('[data-lat-mais]');if(m){const g=m.dataset.latMais;ABERTOS.has(g)?ABERTOS.delete(g):ABERTOS.add(g);desenharLateral();}});
   if(matchMedia('(max-width:860px)').matches)document.getElementById('lateral').open=false;
   function desenharLista(){
+    limparSelecaoFora();
     botaoCupons.hidden = !OFERTAS.some(cupomValido);
     botaoCupons.setAttribute('aria-pressed', String(somenteCupons));
     sincronizarOrcamento();
@@ -1562,33 +1555,7 @@ ${o.cmp?`<a class="cmp ${o.cmp.p<o.p?'cmp-melhor':''}" href="${esc(o.cmp.u)}" ta
     .catch(() => { $('#lista').innerHTML = '<div class="vazio"><b>Não conseguimos carregar as ofertas</b>Atualize a página em alguns instantes.</div>'; });
 })();
 </script>
-<script>
-(function(){
-  if(window.LISTA_CLUBE)return;
-  const nav=document.getElementById('clubeNav');if(!nav)return;
-  let todas=[],selecao=window.CLUBE_SELECAO||{cat:window.CAT_INICIAL||'',linha:'',faixa:0};
-  const esc=t=>String(t||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  const sec=document.createElement('section');sec.className='listas';sec.hidden=true;{const rq=document.getElementById('radarQuedas'),tp=document.getElementById('topoFixo');if(rq)rq.after(sec);else if(tp)tp.after(sec);else (document.getElementById('explorar')||nav).before(sec);}
-  function preparar(L){
-    if(selecao.cat&&!(L.categorias||[]).includes(selecao.cat))return null;
-    if(selecao.linha&&!(L.linhas||[]).includes(selecao.linha))return null;
-    if(!Array.isArray(L.itens))return selecao.faixa?null:L;
-    const itens=L.itens.filter(o=>(!selecao.cat||o.c===selecao.cat)&&(!selecao.linha||o.lin===selecao.linha)&&(!selecao.faixa||(Number(o.p)>0&&Number(o.p)<=selecao.faixa)));
-    return itens.length?{...L,qtd:itens.length,fotos:itens.map(o=>o.img).filter(Boolean).slice(0,3)}:null;
-  }
-  function desenhar(){
-    const listas=todas.map(preparar).filter(Boolean);
-    sec.hidden=!listas.length;if(sec.hidden)return;
-    const params=new URLSearchParams();
-    if(selecao.cat)params.set('categoria',selecao.cat);
-    if(selecao.faixa>0)params.set('limite',String(selecao.faixa));
-    const sufixo=params.toString()?'?'+params.toString():'';
-    sec.innerHTML='<h2>Listas para encontrar seu próximo achado</h2><p>'+(selecao.faixa?'Seleções com produtos dentro do seu limite de preço.':'Escolha uma seleção e compare as ofertas.')+'</p><div class="listas-grade" tabindex="0" aria-label="Listas de ofertas, deslize para explorar">'+listas.map(L=>'<a class="lista-card" data-lista href="lista-'+esc(L.slug)+'.html'+esc(sufixo)+'">'+(L.fotos[0]?'<div class="lista-fotos"><img src="'+esc(L.fotos[0])+'" alt="" loading="lazy" onerror="this.hidden=true"></div>':'')+'<div class="lista-texto"><h3>'+esc(L.titulo)+'</h3><small>'+L.qtd+(L.qtd===1?' oferta':' ofertas')+'</small></div><span class="ver">Abrir →</span></a>').join('')+'</div>';
-  }
-  document.addEventListener('clube:categoria',e=>{selecao=e.detail;desenhar();});
-  fetch('listas.json',{cache:'no-cache'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(d=>{if(Array.isArray(d)){todas=d;desenhar();if(Number.isFinite(window.CLUBE_RETORNO_Y))requestAnimationFrame(()=>scrollTo({top:window.CLUBE_RETORNO_Y,behavior:'instant'}));}}).catch(()=>{});
-})();
-</script><style>
+<style>
 #avip-agentes{--az:#112c52;--am:#ffce32;--cin:#5b6980;max-width:1180px;margin:30px auto;padding:0 20px;color:var(--az);font-family:inherit;scroll-margin-top:140px}
 #avip-agentes *{box-sizing:border-box}#avip-agentes [hidden]{display:none!important}
 #avip-agentes .ag-box{border:1px solid #e1e7ef;border-radius:26px;background:#fff;box-shadow:0 16px 50px #112c520b;padding:30px}
@@ -2025,16 +1992,6 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-aviso]');i
     auto(document.querySelector('.lista-escolhidos'));
     if(++n>60)clearInterval(t);
   },500);
-})();
-</script><script>
-(function(){
-  const f=document.getElementById('formBuscaOrcamento'),c=document.getElementById('buscaOrcamento'),
-        fb=document.getElementById('formBusca'),q=document.getElementById('q');
-  if(!f||!c||!fb||!q)return;
-  f.addEventListener('submit',e=>{e.preventDefault();q.value=c.value.trim();c.blur();fb.requestSubmit();});
-  q.addEventListener('input',()=>{c.value=q.value;});
-  fb.addEventListener('submit',()=>{c.value=q.value;});
-  document.addEventListener('click',()=>setTimeout(()=>{if(c!==document.activeElement)c.value=q.value;},0));
 })();
 </script></body>
 

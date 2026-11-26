@@ -775,6 +775,7 @@ html body #topoFixo #abas{gap:8px}
 .vitrine-abertura #orcamento:not([hidden]){justify-content:center}
 .vitrine-abertura #orcamento .orcamento-erro{text-align:center}
 #vitrineCupons{display:none!important}
+#escolhidos{display:none!important}
 @media(min-width:861px){.categorias-topo .wrap{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px}.categorias-topo #abas{justify-content:center!important}}
 @media(max-width:860px){
 .vitrine-abertura #orcamento:not([hidden]){padding:8px!important;gap:6px}
@@ -1874,7 +1875,7 @@ function montar(lista){
    '<div class="rq2-nav">'+sv(-1,'Quedas anteriores')+sv(1,'Próximas quedas')+(r.length>12?'<button type="button" class="rq2-todas" data-todas>Ver todas</button>':'')+'</div></div>'+
    '<div class="rq2-trilho" id="radarLista">'+r.slice(0,12).map(cartao).join('')+'</div>'+
    (r.length>12?'<button type="button" class="rq2-ver" data-todas>Ver as '+r.length+' quedas</button>':'')+
-   '<div class="rq2-rod">Economia calculada a partir do histórico de preços registrado pelo Achadinhos VIP.<span>Preços e estoque podem mudar na loja.</span></div></div>';
+   '<div class="rq2-rod"></div></div>';
   const ref=document.getElementById('topoFixo');
   (ref&&ref.parentNode)?ref.parentNode.insertBefore(s,ref.nextSibling):document.body.prepend(s);
   const L=document.getElementById('radarLista'),porId=new Map(r.map(x=>[String(x.o.id),x.o]));

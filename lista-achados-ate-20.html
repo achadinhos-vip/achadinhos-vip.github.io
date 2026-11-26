@@ -776,6 +776,7 @@ html body #topoFixo #abas{gap:8px}
 .vitrine-abertura #orcamento:not([hidden]){justify-content:center}
 .vitrine-abertura #orcamento .orcamento-erro{text-align:center}
 #vitrineCupons{display:none!important}
+#escolhidos{display:none!important}
 @media(min-width:861px){.categorias-topo .wrap{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px}.categorias-topo #abas{justify-content:center!important}}
 @media(max-width:860px){
 .vitrine-abertura #orcamento:not([hidden]){padding:8px!important;gap:6px}
@@ -837,7 +838,7 @@ html body #topoFixo #abas{gap:8px}
   <div class="sublinhas" id="sublinhas" role="group" aria-label="Refinar Beleza e Perfumaria" hidden><button type="button" data-linha="" aria-pressed="true">Tudo</button><button type="button" data-linha="beleza" aria-pressed="false">Beleza</button><button type="button" data-linha="perfumaria" aria-pressed="false">Perfumaria</button></div>
 </div></div>
 </div>
-<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Achados até R$ 20</h1><p class="sub-lista">Uma seleção de itens até R$ 20 com avaliações e vendas informadas pela loja.</p><p class="meta-lista">100 achados selecionados · Atualizada em 25/11/2026 às 20:49</p></div><section class="lista-intro" aria-label="Sobre esta lista"><p>Reunimos 100 ofertas baratas até R$ 20, de R$ 4,98 a R$ 19,99, no Mercado Livre e Shopee, com desconto médio de 58% informado pela loja. Os preços são conferidos várias vezes por dia pelo nosso sistema e a oferta sai da lista quando acaba. Confira valor, frete e prazo na loja antes de finalizar a compra.</p><details><summary>Dicas para escolher</summary><ul><li>Em itens baratos, o frete pode custar mais que o produto: junte compras da mesma loja.</li><li>Leia as avaliações com foto para conferir tamanho e acabamento.</li><li>Confira medidas e quantidade de peças no anúncio antes de comprar.</li></ul></details></section><div class="vitrine-abertura"><section class="hero" id="inicio" data-tema="geral" aria-labelledby="tituloHero">
+<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Achados até R$ 20</h1><p class="sub-lista">Uma seleção de itens até R$ 20 com avaliações e vendas informadas pela loja.</p><p class="meta-lista">100 achados selecionados · Atualizada em 25/11/2026 às 20:54</p></div><section class="lista-intro" aria-label="Sobre esta lista"><p>Reunimos 100 ofertas baratas até R$ 20, de R$ 4,98 a R$ 19,99, no Mercado Livre e Shopee, com desconto médio de 58% informado pela loja. Os preços são conferidos várias vezes por dia pelo nosso sistema e a oferta sai da lista quando acaba. Confira valor, frete e prazo na loja antes de finalizar a compra.</p><details><summary>Dicas para escolher</summary><ul><li>Em itens baratos, o frete pode custar mais que o produto: junte compras da mesma loja.</li><li>Leia as avaliações com foto para conferir tamanho e acabamento.</li><li>Confira medidas e quantidade de peças no anúncio antes de comprar.</li></ul></details></section><div class="vitrine-abertura"><section class="hero" id="inicio" data-tema="geral" aria-labelledby="tituloHero">
   <figure class="hero-scene" id="cenarioHero" hidden><img id="cenarioImagem" src="cenario-geral-5989a6c271ec.png" alt="" decoding="async" fetchpriority="high" onerror="this.closest('.hero').dataset.semCena='true'"></figure>
   <div class="wrap">
     <div class="hero-copy">
@@ -1876,7 +1877,7 @@ function montar(lista){
    '<div class="rq2-nav">'+sv(-1,'Quedas anteriores')+sv(1,'Próximas quedas')+(r.length>12?'<button type="button" class="rq2-todas" data-todas>Ver todas</button>':'')+'</div></div>'+
    '<div class="rq2-trilho" id="radarLista">'+r.slice(0,12).map(cartao).join('')+'</div>'+
    (r.length>12?'<button type="button" class="rq2-ver" data-todas>Ver as '+r.length+' quedas</button>':'')+
-   '<div class="rq2-rod">Economia calculada a partir do histórico de preços registrado pelo Achadinhos VIP.<span>Preços e estoque podem mudar na loja.</span></div></div>';
+   '<div class="rq2-rod"></div></div>';
   const ref=document.getElementById('topoFixo');
   (ref&&ref.parentNode)?ref.parentNode.insertBefore(s,ref.nextSibling):document.body.prepend(s);
   const L=document.getElementById('radarLista'),porId=new Map(r.map(x=>[String(x.o.id),x.o]));

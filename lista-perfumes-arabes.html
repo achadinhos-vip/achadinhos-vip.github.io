@@ -820,37 +820,90 @@ html body #topoFixo #abas{gap:8px}
 .lat-mais{font:inherit;font-size:.8rem;color:#0f6b4f;background:none;border:0;padding:2px 0;cursor:pointer;text-decoration:underline}
 @media(max-width:860px){.com-lateral{grid-template-columns:1fr;gap:12px}.lateral{position:static;max-height:none}
  .lateral>summary{cursor:pointer;display:flex;justify-content:space-between;margin:0}.lateral>summary::after{content:'▾'}.lateral[open]>summary{margin-bottom:6px}}
-</style><style>
-html body #radarQuedas.rq2-sec .rq2-lado{position:relative;overflow:hidden;isolation:isolate;background:#1b1424;color:#fff;border-radius:18px;
-  padding:26px 32px!important;margin-bottom:22px;grid-template-columns:auto minmax(260px,1fr) auto auto!important;
-  grid-template-areas:"sobre txt metr nav" "tit txt metr nav"!important;align-items:center!important;column-gap:32px!important;row-gap:4px}
-html body #radarQuedas.rq2-sec .rq2-lado:after{content:"";position:absolute;right:-70px;top:-90px;width:280px;height:280px;border-radius:50%;
-  background:radial-gradient(circle,#ddf45133,transparent 70%);z-index:-1;pointer-events:none}
-html body #radarQuedas.rq2-sec .rq2-sobre{color:#ddf451;align-self:end}
-html body #radarQuedas.rq2-sec .rq2-sobre:after{content:"· ao vivo";margin-left:2px}
-html body #radarQuedas.rq2-sec .rq2-vivo{background:#ddf451}
-html body #radarQuedas.rq2-sec .rq2-vivo:after{border-color:#ddf451}
-html body #radarQuedas.rq2-sec h2{color:#fff;font-size:2.4rem;line-height:1.04;letter-spacing:-.05em;margin:8px 0 0;white-space:normal;align-self:start}
-html body #radarQuedas.rq2-sec h2 span{display:inline-block;color:#1b1424;background:#ddf451;padding:0 10px 2px;border-radius:8px;transform:rotate(-1.5deg);margin-top:4px}
-html body #radarQuedas.rq2-sec .rq2-lado p{display:block!important;grid-area:txt;color:#c9c3d1;font-size:.9rem;line-height:1.55;margin:0;max-width:44ch}
-html body #radarQuedas.rq2-sec .rq2-metr{display:flex;gap:12px;border:0}
-html body #radarQuedas.rq2-sec .rq2-metr div{background:#ffffff12;border:1px solid #ffffff24;border-radius:14px;padding:12px 18px!important;min-width:118px}
-html body #radarQuedas.rq2-sec .rq2-metr div+div{border-left:1px solid #ffffff24}
-html body #radarQuedas.rq2-sec .rq2-metr b{color:#fff;font-size:1.9rem;letter-spacing:-.04em}
-html body #radarQuedas.rq2-sec .rq2-metr div+div b{color:#ddf451}
-html body #radarQuedas.rq2-sec .rq2-metr small{color:#b7b0c0}
-html body #radarQuedas.rq2-sec .rq2-seta{background:#ddf451;border:0;color:#1b1424}
-html body #radarQuedas.rq2-sec .rq2-seta:hover:not(:disabled){background:#fff;color:#1b1424}
-html body #radarQuedas.rq2-sec .rq2-todas{color:#fff;font-weight:700}
-html body #radarQuedas.rq2-sec .rq2-todas:after{content:" →"}
-@media(max-width:1100px){html body #radarQuedas.rq2-sec .rq2-lado{grid-template-columns:auto 1fr auto!important;grid-template-areas:"sobre sobre nav" "tit tit nav" "txt txt metr"!important;row-gap:12px}}
-@media(max-width:860px){
-html body #radarQuedas.rq2-sec .rq2-lado{display:block!important;padding:20px 18px!important;margin:0 12px 16px;border-radius:16px}
-html body #radarQuedas.rq2-sec h2{font-size:1.7rem;margin:10px 0 14px}
-html body #radarQuedas.rq2-sec .rq2-lado p{display:none!important}
-html body #radarQuedas.rq2-sec .rq2-metr div{flex:1;min-width:0;padding:10px 12px!important}
-html body #radarQuedas.rq2-sec .rq2-metr b{font-size:1.5rem}
-}
+</style><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Gabarito:wght@800&family=Manrope:wght@500;700&display=swap" rel="stylesheet"><style>
+/* Hallmark · v2.0.0 · redesign: restyle · theme: squeeze (by request) · paper: amarelo Mercado Livre */
+:root{--sq-paper:oklch(92% .19 104);--sq-paper-2:oklch(95.5% .12 103);--sq-paper-3:oklch(87% .18 99);--sq-ink:oklch(28% .1 275);--sq-ink-2:oklch(32% .08 275);
+--sq-muted:oklch(36% .06 275);--sq-rule:oklch(80% .15 100);--sq-photo:#fff;--sq-accent:oklch(83% .115 56);--sq-accent-2:oklch(74% .15 46);--sq-accent-ink:oklch(30% .07 40);
+--sq-card:oklch(99% .01 100);--sq-fd:"Gabarito",ui-sans-serif,system-ui,sans-serif;--sq-fb:"Manrope",ui-sans-serif,system-ui,sans-serif;--sq-r:24px;--sq-rc:16px;
+--sq-shadow:0 14px 32px -16px oklch(40% .1 90 / .55)}
+html body{background:var(--sq-paper)!important;color:var(--sq-ink)!important;font-family:var(--sq-fb)!important}
+html body main h1,html body main h2,html body main h3,html body dialog h2,html body dialog h3{font-family:var(--sq-fd)!important;letter-spacing:-.025em}
+html body :focus-visible{outline:3px solid var(--sq-ink)!important;outline-offset:2px}
+html body #topoFixo,html body .topo-fixo,html body .topo,html body .categorias-topo{background:var(--sq-paper)!important;border-color:var(--sq-rule)!important;box-shadow:none!important}
+html body .marca-nome,html body .marca-nome strong{color:var(--sq-ink)!important;font-family:var(--sq-fd)!important}
+html body .busca input,html body #q{background:var(--sq-paper-2)!important;border:2px solid var(--sq-rule)!important;border-radius:var(--sq-rc)!important;color:var(--sq-ink)!important;font-family:var(--sq-fb)!important}
+html body .topo-acoes a,html body .topo-acoes button{border:2px solid var(--sq-ink)!important;border-radius:var(--sq-rc)!important;background:transparent!important;color:var(--sq-ink)!important;font:700 15px var(--sq-fb)!important}
+html body .categorias-topo .aba,html body .sublinhas button{background:var(--sq-paper-2)!important;color:var(--sq-ink)!important;border:0!important;border-radius:999px!important;font:700 15px var(--sq-fb)!important;box-shadow:none!important}
+html body .categorias-topo .aba[aria-pressed=true],html body .sublinhas button[aria-pressed=true]{background:var(--sq-paper-3)!important;box-shadow:inset 0 0 0 2px var(--sq-ink)!important}
+html body #topoFixo .faixa-orcamento #orcamento:not([hidden]){background:var(--sq-card)!important;border:0!important;border-radius:var(--sq-r)!important;box-shadow:var(--sq-shadow)!important}
+html body #orcamento .orcamento-atalhos button{background:transparent!important;color:var(--sq-ink)!important;border:2px solid oklch(88% .02 100)!important;border-radius:var(--sq-rc)!important;font:500 15px var(--sq-fb)!important;box-shadow:none!important}
+html body #orcamento .orcamento-atalhos button[aria-pressed=true]{background:var(--sq-accent)!important;color:var(--sq-accent-ink)!important;font-weight:700!important;box-shadow:inset 0 0 0 2px var(--sq-accent-ink)!important;border-color:var(--sq-accent)!important}
+html body #orcamento .orcamento-input{background:#fff!important;border:2px solid oklch(88% .02 100)!important;border-radius:var(--sq-rc)!important;color:var(--sq-ink)!important}
+html body #radarQuedas.rq2-sec{--ink:oklch(28% .1 275);--ink2:oklch(32% .08 275);--ink3:oklch(36% .06 275);--line:oklch(80% .15 100);--tile:#fff;--drop:oklch(28% .1 275);background:var(--sq-paper-2)!important;color:var(--sq-ink)!important}
+html body #radarQuedas.rq2-sec h2{font:800 clamp(40px,4.4vw,60px)/1 var(--sq-fd)!important;color:var(--sq-ink)!important}
+html body #radarQuedas.rq2-sec h2 span{color:var(--sq-ink)!important;background:none!important}
+html body #radarQuedas.rq2-sec .rq2-sobre{color:var(--sq-ink-2)!important;font:700 15px var(--sq-fb)!important;letter-spacing:0!important;text-transform:none!important}
+html body #radarQuedas.rq2-sec .rq2-vivo{display:none}
+html body #radarQuedas.rq2-sec .rq2-lado{background:transparent!important;color:var(--sq-ink)!important;box-shadow:none!important}
+html body #radarQuedas.rq2-sec .rq2-lado::before,html body #radarQuedas.rq2-sec .rq2-lado::after{display:none!important}
+html body #radarQuedas.rq2-sec .rq2-lado p{color:var(--sq-muted)!important}
+html body #radarQuedas.rq2-sec .rq2-metr div{background:var(--sq-paper-3)!important;border:0!important;border-radius:var(--sq-r)!important;padding:14px 18px!important}
+html body #radarQuedas.rq2-sec .rq2-metr b{font:800 34px/1 var(--sq-fd)!important;color:var(--sq-ink)!important}
+html body #radarQuedas.rq2-sec .rq2-metr small{color:var(--sq-ink-2)!important;font-weight:700}
+html body #radarQuedas.rq2-sec .rq2-seta{background:var(--sq-accent)!important;color:var(--sq-accent-ink)!important;border:0!important}
+html body #radarQuedas.rq2-sec .rq2-todas,html body #radarQuedas.rq2-sec .rq2-ver{color:var(--sq-ink)!important;font-weight:700}
+html body #radarQuedas.rq2-sec .rq2-card{background:var(--sq-paper)!important;border:0!important;border-radius:var(--sq-r)!important;padding:12px!important;box-shadow:none!important}
+html body #radarQuedas.rq2-sec .rq2-foto{background:var(--sq-photo)!important;border-radius:var(--sq-rc)!important}
+html body #radarQuedas.rq2-sec .rq2-corte{background:var(--sq-accent)!important;color:var(--sq-accent-ink)!important;border-radius:999px!important;font:700 14px var(--sq-fb)!important}
+html body #radarQuedas.rq2-sec .rq2-hoje{font:800 28px/1 var(--sq-fd)!important;color:var(--sq-ink)!important}
+html body #radarQuedas.rq2-sec h3,html body #radarQuedas.rq2-sec .rq2-eco,html body #radarQuedas.rq2-sec .rq2-min{color:var(--sq-ink)!important}
+html body #radarQuedas.rq2-sec .rq2-rod{border-color:var(--sq-rule)!important}
+html body .clube-nav button{background:var(--sq-paper-2)!important;color:var(--sq-ink)!important;border:0!important;border-radius:999px!important;font:700 15px var(--sq-fb)!important}
+html body .clube-nav button[aria-pressed=true],html body .clube-nav button[aria-selected=true]{background:var(--sq-ink)!important;color:var(--sq-paper)!important}
+html body .titulo-lista,html body #tituloSelecao{font-family:var(--sq-fd)!important;color:var(--sq-ink)!important}
+html body .lateral{background:var(--sq-paper-2)!important;border:0!important;border-radius:var(--sq-r)!important}
+html body .lat-grupo{border-color:var(--sq-rule)!important}
+html body .lat-grupo input{accent-color:var(--sq-ink)!important}
+html body .lat-limpar,html body .lat-mais{color:var(--sq-ink)!important}
+html body .filtro-chip,html body .painel-filtros summary,html body .ordenacao select{background:var(--sq-paper-2)!important;border:0!important;border-radius:999px!important;color:var(--sq-ink)!important}
+html body #lista .card{background:var(--sq-paper-2)!important;border:0!important;border-radius:var(--sq-r)!important;box-shadow:none!important;padding:12px!important;cursor:pointer}
+html body #lista .card:hover{background:oklch(97.5% .07 103)!important}
+html body #lista .card .foto-wrap{margin:0!important}
+html body #lista .card .foto-wrap .img{background:var(--sq-photo)!important;border-radius:var(--sq-rc)!important;border:0!important}
+html body #lista .card .card-top{background:transparent!important;padding:0 2px 8px!important}
+html body #lista .card .etq-loja{color:var(--sq-ink-2)!important;font:700 13px var(--sq-fb)!important}
+html body #lista .card .info{padding:10px 2px 2px!important}
+html body #lista .card .frase{color:var(--sq-muted)!important}
+html body #lista .card h3,html body #lista .card h3 a{font:700 15px/1.35 var(--sq-fb)!important;color:var(--sq-ink)!important;letter-spacing:0!important}
+html body #lista .card .precos .p{font:800 30px/1 var(--sq-fd)!important;color:var(--sq-ink)!important;letter-spacing:-.03em}
+html body #lista .card .precos s,html body #lista .card .precos .de{color:var(--sq-muted)!important}
+html body #filtro #lista .card .etq-desc,html body #lista .card .etq-desc.etq-desc:not(.x){background:var(--sq-accent)!important;color:var(--sq-accent-ink)!important;border-radius:999px!important}
+html body #lista .card .ir{background:var(--sq-accent)!important;color:var(--sq-accent-ink)!important;border:0!important;border-radius:var(--sq-rc)!important;font:700 15px var(--sq-fb)!important;box-shadow:none!important}
+html body #lista .card .ir:hover{background:var(--sq-accent-2)!important}
+html body #lista .card .aviso-bt{background:var(--sq-paper-3)!important;color:var(--sq-ink)!important;border:0!important;border-radius:var(--sq-rc)!important}
+html body #lista .card .card-mais,html body #lista .card .card-mais summary{color:var(--sq-ink-2)!important;border-color:var(--sq-rule)!important}
+html body #lista .card .marca-card{color:var(--sq-ink-2)!important}
+html body .paginacao-bt,html body .paginacao-seta{background:var(--sq-paper-2)!important;color:var(--sq-ink)!important;border:0!important;border-radius:var(--sq-rc)!important}
+html body .paginacao-bt[aria-current]{background:var(--sq-ink)!important;color:var(--sq-paper)!important}
+html body #detOferta{background:var(--sq-paper)!important;color:var(--sq-ink)!important;border-radius:var(--sq-r)!important}
+html body #detOferta::backdrop{background:oklch(28% .1 275 / .6)!important}
+html body #detOferta .det-foto{background:var(--sq-photo)!important;border-radius:var(--sq-r)!important}
+html body #detOferta h2{font:800 30px/1.1 var(--sq-fd)!important;color:var(--sq-ink)!important}
+html body #detOferta .det-loja{color:var(--sq-ink-2)!important}
+html body #detOferta .det-preco b{font:800 64px/.95 var(--sq-fd)!important;color:var(--sq-ink)!important;letter-spacing:-.04em}
+html body #detOferta .det-preco,html body #detOferta .det-prova,html body #detOferta .det-dica,html body #detOferta .det-leg{color:var(--sq-ink-2)!important}
+html body #detOferta .det-ir{background:var(--sq-accent)!important;color:var(--sq-accent-ink)!important;border-radius:var(--sq-rc)!important;font:700 18px var(--sq-fb)!important}
+html body #detOferta .det-ir:after{display:none}
+html body #detOferta .det-hist{background:var(--sq-paper-3);border:0!important;border-radius:var(--sq-r);padding:16px 18px!important}
+html body #detOferta .det-num div{background:var(--sq-paper-2)!important;border-radius:var(--sq-rc)!important}
+html body #detOferta .det-num b{font-family:var(--sq-fd)!important;color:var(--sq-ink)!important}
+html body #detOferta .gr-linha{stroke:var(--sq-ink)!important}
+html body #detOferta .gr-area{fill:oklch(28% .1 275 / .08)!important}
+html body #detOferta .det-fechar{background:var(--sq-paper-2)!important;color:var(--sq-ink)!important}
+html body #detOferta .det-voltar{position:static!important;float:none!important;width:auto!important;height:auto!important;margin:0 0 14px!important;padding:8px 16px!important;border:2px solid var(--sq-ink)!important;border-radius:var(--sq-rc)!important;background:transparent!important;font:700 15px var(--sq-fb)!important;display:inline-flex}
+html body #detOferta .rq-queda{background:var(--sq-accent)!important;color:var(--sq-accent-ink)!important;border-radius:999px!important;border:0!important}
+html body footer{background:var(--sq-paper-3)!important;color:var(--sq-ink)!important}
+html body footer a{color:var(--sq-ink)!important}
 </style><script type="application/ld+json">{"@context": "https://schema.org", "@type": "ItemList", "name": "Perfumes árabes até R$ 150", "numberOfItems": 10, "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Berermei  100ML Perfume Feminino Árabe Yara Eau de Parfum", "url": "https://clubeachadinhosvip.com.br/lista-perfumes-arabes.html#oferta-SHP49262442447"}, {"@type": "ListItem", "position": 2, "name": "BEIERMEI Perfume Árabe Yara Feminino 100ml Eau de Parfum Doce Sofisticado Longa Duração", "url": "https://clubeachadinhosvip.com.br/lista-perfumes-arabes.html#oferta-SHP50062404733"}, {"@type": "ListItem", "position": 3, "name": "Perfume Árabe  Asad  Eau De Parfum Masculino Original", "url": "https://clubeachadinhosvip.com.br/lista-perfumes-arabes.html#oferta-SHP58217545478"}, {"@type": "ListItem", "position": 4, "name": "Perfume YARA Elixir Eau de Parfum 100ml Fragrância Feminina Fruta Rosa", "url": "https://clubeachadinhosvip.com.br/lista-perfumes-arabes.html#oferta-SHP58219568922"}, {"@type": "ListItem", "position": 5, "name": "Perfume Arabe Yara  Feminino EDP 100ml Rosa  Doce Baunilha Projeção Marcante Alta Fixacao Lacra", "url": "https://clubeachadinhosvip.com.br/lista-perfumes-arabes.html#oferta-SHP58217578664"}, {"@type": "ListItem", "position": 6, "name": "Perfume Árabe Asad Zanzibar 100ml EDP Masculino Importado 100% Original", "url": "https://clubeachadinhosvip.com.br/lista-perfumes-arabes.html#oferta-SHP58268914149"}, {"@type": "ListItem", "position": 7, "name": "Perfume Asad Bourbon Árabe Isabelle la belle 100ml Original Masculino", "url": "https://clubeachadinhosvip.com.br/lista-perfumes-arabes.html#oferta-SHP49412856551"}, {"@type": "ListItem", "position": 8, "name": "Perfumes Femininos Liillyy e Yara Eau de Parfum Alta Fixação Fragrância Doce Elegante", "url": "https://clubeachadinhosvip.com.br/lista-perfumes-arabes.html#oferta-SHP58269521914"}, {"@type": "ListItem", "position": 9, "name": "Combo da Sereia Nagoia – 2 Perfumes Inspirações Arabes 15 ml - Sabah, Yara, Royal Amber, Fakhar Rose", "url": "https://clubeachadinhosvip.com.br/lista-perfumes-arabes.html#oferta-SHP23299152760"}, {"@type": "ListItem", "position": 10, "name": "Perfume Yara Árabe 100ml Feminino", "url": "https://clubeachadinhosvip.com.br/lista-perfumes-arabes.html#oferta-SHP58218921488"}]}</script><style>.lista-contexto{order:-1;margin:0}.lista-contexto~.abas,.lista-contexto~.sublinhas{display:none!important}.pagina-de-lista .garantias,.pagina-de-lista .clube-nav,.lista-pagina .cabecalho-lista{display:none!important}.lista-pagina .cabecalho-interno h1{margin-top:0}.lista-pagina .navegacao{margin-bottom:14px}.lista-pagina~footer{margin-top:20px}.hero .hero-copy h1{font-size:24px}@media(max-width:600px){.hero .hero-copy h1{font-size:19px}}</style></head>
 <body class="pagina-de-lista" data-tema="beleza">
 <a class="pular" href="#filtro">Ir para as ofertas</a>
@@ -875,7 +928,7 @@ html body #radarQuedas.rq2-sec .rq2-metr b{font-size:1.5rem}
   <div class="sublinhas" id="sublinhas" role="group" aria-label="Refinar Beleza e Perfumaria" hidden><button type="button" data-linha="" aria-pressed="true">Tudo</button><button type="button" data-linha="beleza" aria-pressed="false">Beleza</button><button type="button" data-linha="perfumaria" aria-pressed="false">Perfumaria</button></div>
 </div></div>
 </div>
-<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Perfumes árabes até R$ 150</h1><p class="sub-lista">Fragrâncias de marcas árabes até R$ 150. Confira vendedor e detalhes na loja.</p><p class="meta-lista">10 achados selecionados · Atualizada em 26/11/2026 às 06:17</p></div><section class="lista-intro" aria-label="Sobre esta lista"><p>Reunimos 10 ofertas de perfumes árabes, de R$ 9,99 a R$ 149,00, no Shopee, com desconto médio de 49% informado pela loja. Os preços são conferidos várias vezes por dia pelo nosso sistema e a oferta sai da lista quando acaba. Confira valor, frete e prazo na loja antes de finalizar a compra.</p><details><summary>Dicas para escolher</summary><ul><li>Eau de Parfum (EDP) costuma durar mais na pele que Eau de Toilette (EDT).</li><li>Confira o volume (ml) para comparar o preço de verdade entre os anúncios.</li><li>Prefira loja oficial ou vendedor com boa reputação para evitar falsificação.</li></ul></details></section><div class="vitrine-abertura"><section class="hero" id="inicio" data-tema="beleza" aria-labelledby="tituloHero">
+<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Perfumes árabes até R$ 150</h1><p class="sub-lista">Fragrâncias de marcas árabes até R$ 150. Confira vendedor e detalhes na loja.</p><p class="meta-lista">10 achados selecionados · Atualizada em 26/11/2026 às 06:30</p></div><section class="lista-intro" aria-label="Sobre esta lista"><p>Reunimos 10 ofertas de perfumes árabes, de R$ 9,99 a R$ 149,00, no Shopee, com desconto médio de 49% informado pela loja. Os preços são conferidos várias vezes por dia pelo nosso sistema e a oferta sai da lista quando acaba. Confira valor, frete e prazo na loja antes de finalizar a compra.</p><details><summary>Dicas para escolher</summary><ul><li>Eau de Parfum (EDP) costuma durar mais na pele que Eau de Toilette (EDT).</li><li>Confira o volume (ml) para comparar o preço de verdade entre os anúncios.</li><li>Prefira loja oficial ou vendedor com boa reputação para evitar falsificação.</li></ul></details></section><div class="vitrine-abertura"><section class="hero" id="inicio" data-tema="beleza" aria-labelledby="tituloHero">
   <figure class="hero-scene" id="cenarioHero" ><img id="cenarioImagem" src="cenario-beleza-52d17fb2c0.webp" alt="Mascote do Clube usando hidratante" decoding="async" fetchpriority="high" onerror="this.closest('.hero').dataset.semCena='true'"></figure>
   <div class="wrap">
     <div class="hero-copy">
@@ -1813,7 +1866,7 @@ function quedas(lista){
     const h=o.hist.filter(x=>x&&x[1]>0&&x[0]>agora-7*DIA);
     const antes=h.filter(x=>x[0]<agora-3600);
     if(antes.length<2)continue;
-    let pico=antes[0];for(const x of antes)if(x[1]>pico[1])pico=x;
+    const _ord=antes.map(x=>x[1]).sort((a,b)=>a-b);const _med=_ord[Math.floor((_ord.length-1)/2)];let pico=antes.filter(x=>x[1]>=_med).sort((a,b)=>b[0]-a[0])[0]||antes[0];pico=[pico[0],_med];
     const q=Math.round((1-o.p/pico[1])*100);
     if(q<5||q>MAX_QUEDA)continue;
     out.push({o,q,pico,h});
@@ -1875,15 +1928,15 @@ function abrirDetalhe(o){
   const pts=(Array.isArray(o.hist)?o.hist:[]).filter(x=>x&&x[1]>0).map(x=>[x[0],x[1]]).sort((a,b)=>a[0]-b[0]);
   if(!pts.length||pts[pts.length-1][1]!==o.p)pts.push([Math.max(agora,(pts.length?pts[pts.length-1][0]+1:agora)),o.p]);
   const v=pts.map(x=>x[1]),menor=Math.min(...v),maior=Math.max(...v),media=v.reduce((a,b)=>a+b,0)/v.length;
-  const pico=pts.reduce((a,x)=>x[1]>a[1]?x:a,pts[0]);const q=Math.round((1-o.p/maior)*100);
+  const _a=pts.slice(0,-1).map(x=>x[1]).sort((x,y)=>x-y);const _ref=_a.length?_a[Math.floor((_a.length-1)/2)]:o.p;const pico=[(pts.slice(0,-1).reverse().find(x=>x[1]>=_ref)||pts[0])[0],_ref];const q=Math.round((1-o.p/_ref)*100);
   const loja=NOME_LOJA[o.l]||'loja';const GW=window.matchMedia&&matchMedia('(max-width:700px)').matches?380:960;
   const estado=o.p<=menor+0.005&&maior>o.p*1.02?['bom','✅ Menor preço que já registramos']:o.p<media?['ok','👍 Abaixo da média registrada']:['alto','⚠️ Acima da média registrada'];
   const info=[];if(o.n)info.push('★ '+String(o.n).replace('.',',')+' na loja');if(o.v)info.push(o.v.toLocaleString('pt-BR')+'+ vendidos');if(o.fg)info.push('Frete grátis');
   const cmp=o.cmp&&o.cmp.p?'<p class="det-cmp">⚖️ '+(o.cmp.l==='M'?'No Mercado Livre':'Na Shopee')+': <b>'+brl(o.cmp.p)+'</b> · '+(o.cmp.p<o.p?'mais barato lá':'aqui está mais barato')+(o.cmp.u?' · <a href="'+esc(o.cmp.u)+'" target="_blank" rel="sponsored noopener">ver lá</a>':'')+'</p>':'';
-  dlg.innerHTML='<div class="det-caixa"><button type="button" class="det-fechar" aria-label="Fechar">✕</button>'+
+  dlg.innerHTML='<div class="det-caixa"><button type="button" class="det-fechar" aria-label="Fechar">✕</button><button type="button" class="det-fechar det-voltar">← Voltar para a vitrine</button>'+
     '<div class="det-topo"><div class="det-foto"><img src="'+esc(o.img)+'" alt="">'+(q>=5?'<span class="rq-queda">−'+q+'%</span>':'')+'</div>'+
     '<div class="det-info"><span class="det-loja">'+esc(loja)+'</span><h2>'+esc(o.t)+'</h2>'+
-    '<div class="det-preco">'+(q>=5?'<span>Era <s>'+brl(pico[1])+'</s> em '+data(pico[0])+'</span>':'')+'<b>'+brl(o.p)+'</b></div>'+
+    '<div class="det-preco">'+(q>=5?'<span>Preço mais comum: <s>'+brl(pico[1])+'</s></span>':'')+'<b>'+brl(o.p)+'</b></div>'+
     '<p class="det-estado det-'+estado[0]+'">'+estado[1]+'</p>'+(info.length?'<p class="det-prova">'+info.map(esc).join(' · ')+'</p>':'')+cmp+
     (o.cp?'<p class="det-cupom">🎟️ '+esc(o.cp)+'</p>':'')+
     '<a class="det-ir" href="'+esc(o.u)+'" target="_blank" rel="sponsored noopener" data-oferta="'+esc(o.id)+'">Ver oferta '+(o.l==='M'?'no ':'na ')+esc(loja)+'</a>'+(o.l!=='A'&&o.p>0&&!o.ap?'<button type="button" class="aviso-bt" data-aviso="'+esc(o.id)+'" data-preco="'+o.p+'" data-titulo="'+esc(o.t)+'">Me avise quando baixar</button>':'')+'</div></div>'+
@@ -2033,6 +2086,15 @@ document.addEventListener('click',e=>{const b=e.target.closest('[data-aviso]');i
     if(++n>60)clearInterval(t);
   },500);
 })();
+</script><script>
+/* Clique na foto ou no nome do produto abre o detalhe; a compra fica no botão. */
+document.addEventListener('click',function(e){
+  var a=e.target.closest('#lista .card a[data-foto], #lista .card h3 a'); if(!a||e.ctrlKey||e.metaKey||e.shiftKey) return;
+  var card=a.closest('[data-oferta]'); if(!card||!window.abrirDetalheOferta) return;
+  var lista=window.OFERTAS_CARREGADAS||window.OFERTAS||[], id=card.getAttribute('data-oferta'), o=null;
+  for(var i=0;i<lista.length;i++){ if(lista[i].id===id){o=lista[i];break;} }
+  if(!o) return; e.preventDefault(); e.stopPropagation(); window.abrirDetalheOferta(o);
+},true);
 </script></body>
 
 </html>

@@ -776,6 +776,13 @@ html body #topoFixo #abas{gap:8px}
 .vitrine-abertura #orcamento .orcamento-erro{text-align:center}
 #vitrineCupons{display:none!important}
 #escolhidos{display:none!important}
+#topoFixo .faixa-orcamento{padding-bottom:8px}
+#topoFixo .faixa-orcamento .vitrine-abertura{padding:0!important;margin:0!important;border:0!important}
+#topoFixo .faixa-orcamento #orcamento:not([hidden]){padding:6px 12px!important;border-width:1.5px!important}
+#topoFixo .faixa-orcamento .orcamento-atalhos button{padding:6px 14px!important}
+#topoFixo .faixa-orcamento .orcamento-input{padding:5px 12px!important}
+@media(max-width:860px){#topoFixo .faixa-orcamento{padding-bottom:6px}#topoFixo .faixa-orcamento #orcamento:not([hidden]){padding:6px!important;gap:5px}
+#topoFixo .faixa-orcamento .orcamento-atalhos button{padding:6px 2px!important}#topoFixo .faixa-orcamento .orcamento-input{padding:4px 10px!important}}
 @media(min-width:861px){.categorias-topo .wrap{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:10px}.categorias-topo #abas{justify-content:center!important}}
 @media(max-width:860px){
 .vitrine-abertura #orcamento:not([hidden]){padding:8px!important;gap:6px}
@@ -856,7 +863,7 @@ html body #topoFixo #abas{gap:8px}
   <p id="orcamentoSemPreco" class="orcamento-nota" hidden>Produtos sem preço informado ficam fora do limite. Escolha “Sem limite” para vê-los.</p>
   <p id="orcamentoErro" class="orcamento-erro" role="status" hidden></p>
 </section>
-<noscript><p>Ative o JavaScript do navegador para escolher um limite de preço.</p></noscript></div>
+<noscript><p>Ative o JavaScript do navegador para escolher um limite de preço.</p></noscript></div><script>(function(){const a=document.querySelector('.vitrine-abertura'),t=document.getElementById('topoFixo');if(!a||!t)return;const w=document.createElement('div');w.className='wrap faixa-orcamento';w.appendChild(a);t.appendChild(w);})();</script>
 
   <nav class="clube-nav" id="clubeNav" aria-label="Seu Clube" hidden>
     <div class="clube-abas"><button type="button" data-modo="explorar" aria-pressed="true">Explorar</button><button type="button" data-modo="para-voce" aria-pressed="false">Para você</button><button type="button" data-modo="salvas" aria-pressed="false">Salvas <span class="n-salvas" id="nSalvas">0</span></button><button type="button" data-modo="vistas" aria-pressed="false">Vistas</button></div>
@@ -1467,7 +1474,7 @@ ${o.cmp?`<a class="cmp ${o.cmp.p<o.p?'cmp-melhor':''}" href="${esc(o.cmp.u)}" ta
     au.hidden = false; $('#q').setAttribute('aria-expanded','true');
   }
   function fecharAuto(){ $('#auto').hidden = true; $('#q').setAttribute('aria-expanded','false'); }
-  function irParaLista(){ const y = $('#orcamento').getBoundingClientRect().top + scrollY - $('#topoFixo').offsetHeight - 4; scrollTo({top:y, behavior:'smooth'}); }
+  function irParaLista(){ const y = ($('#filtro')||$('#orcamento')).getBoundingClientRect().top + scrollY - $('#topoFixo').offsetHeight - 4; scrollTo({top:y, behavior:'smooth'}); }
 
   function compartilhar(id){
     const o = OFERTAS.find(x => x.id === id); if (!o) return;

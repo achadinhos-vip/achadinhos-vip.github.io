@@ -1047,27 +1047,19 @@ html body #radarQuedas.rq2-sec.enc .grito{text-shadow:none}
 html body #radarQuedas.rq2-sec.enc .estrela{clip-path:none;width:auto;height:auto;margin:0;border-radius:0}
 html body #radarQuedas.rq2-sec.enc .rq2-todas{text-decoration:none!important}
 
-html body #radarQuedas.rq2-sec.enc .rq2-lado{background:#fff!important;border:1px solid var(--sq-rule)!important;border-left:8px solid #e3262a!important;border-radius:18px!important;padding:16px 26px!important;box-shadow:var(--sq-shadow)!important}
-html body #radarQuedas.rq2-sec.enc .grito{font:800 58px/.9 var(--sq-fd);color:var(--sq-ink);letter-spacing:-.03em}
+html body #radarQuedas.rq2-sec.enc .rq2-lado{--k:1.8;background:#fff!important;border:1px solid var(--sq-rule)!important;border-left:calc(var(--k) * 6px) solid #e3262a!important;border-radius:calc(var(--k) * 14px)!important;padding:calc(var(--k) * 12px) calc(var(--k) * 14px)!important;gap:calc(var(--k) * 8px)!important;flex-wrap:nowrap!important;align-items:center!important;box-shadow:var(--sq-shadow)!important}
+html body #radarQuedas.rq2-sec.enc .encarte{gap:calc(var(--k) * 8px)!important;flex-wrap:nowrap!important}
+html body #radarQuedas.rq2-sec.enc .grito{font:800 calc(var(--k) * 30px)/.9 var(--sq-fd)!important;color:var(--sq-ink);letter-spacing:-.03em}
 html body #radarQuedas.rq2-sec.enc .grito:after{content:".";color:#e3262a}
-html body #radarQuedas.rq2-sec.enc .estrela{background:#e3262a;color:#fff;border-radius:999px;padding:9px 22px}
-html body #radarQuedas.rq2-sec.enc .estrela>div{display:block!important;text-align:center;font:700 13px/1 var(--sq-fd);text-transform:uppercase}
-html body #radarQuedas.rq2-sec.enc .estrela b{display:block!important;margin-top:2px;font-size:30px;letter-spacing:-.03em}
+html body #radarQuedas.rq2-sec.enc .estrela{background:#e3262a;color:#fff;border-radius:999px;padding:calc(var(--k) * 6px) calc(var(--k) * 11px)!important;width:auto!important;height:auto!important;margin:0!important}
+html body #radarQuedas.rq2-sec.enc .estrela>div{display:block!important;text-align:center;font:700 calc(var(--k) * 9px)/1 var(--sq-fd)!important;text-transform:uppercase}
+html body #radarQuedas.rq2-sec.enc .estrela b{display:block!important;margin-top:calc(var(--k) * 1px);font-size:calc(var(--k) * 17px)!important;letter-spacing:-.03em}
 html body #radarQuedas.rq2-sec.enc .rq2-nav{padding:0!important;margin:0 0 0 auto!important;align-self:center!important}
-html body #radarQuedas.rq2-sec.enc .rq2-todas{color:var(--sq-ink)!important;border:2px solid var(--sq-ink)!important;border-radius:999px!important;padding:11px 22px!important;font:800 17px/1 var(--sq-fd)!important;transition:background .2s,color .2s}
+html body #radarQuedas.rq2-sec.enc .rq2-todas{color:var(--sq-ink)!important;border:calc(var(--k) * 1.5px) solid var(--sq-ink)!important;border-radius:999px!important;padding:calc(var(--k) * 8px) calc(var(--k) * 13px)!important;font:800 calc(var(--k) * 13px)/1 var(--sq-fd)!important;transition:background .2s,color .2s}
 html body #radarQuedas.rq2-sec.enc .rq2-todas:hover{background:var(--sq-ink)!important;color:#fff!important}
-@media(max-width:700px){
- html body #radarQuedas.rq2-sec.enc .rq2-lado{padding:12px 14px!important;border-left-width:6px!important;border-radius:14px!important}
- html body #radarQuedas.rq2-sec.enc .grito{font-size:32px}
- html body #radarQuedas.rq2-sec.enc .estrela{padding:6px 11px} html body #radarQuedas.rq2-sec.enc .estrela>div{font-size:9px;gap:4px} html body #radarQuedas.rq2-sec.enc .estrela b{font-size:17px}
- html body #radarQuedas.rq2-sec.enc .rq2-todas{font-size:13px!important;padding:8px 13px!important;border-width:1.5px!important}
-}
-@media(max-width:700px){
- html body #radarQuedas.rq2-sec.enc .estrela>div{display:block!important;text-align:center;line-height:1}
- html body #radarQuedas.rq2-sec.enc .estrela b{display:block!important;margin-top:1px}
- html body #radarQuedas.rq2-sec.enc .grito{font-size:30px!important}
- html body #radarQuedas.rq2-sec.enc .rq2-lado{gap:8px!important} html body #radarQuedas.rq2-sec.enc .encarte{gap:8px!important}
-}</style><style>
+@media(min-width:701px){ html body #radarQuedas.rq2-sec.enc .rq2-lado{width:fit-content!important;max-width:100%!important;justify-self:center!important;align-self:center!important;margin-left:auto!important;margin-right:auto!important} }
+@media(max-width:700px){ html body #radarQuedas.rq2-sec.enc .rq2-lado{--k:1} }
+</style><style>
 html body #topoFixo,html body #topoFixo.topo-fixo{background:#232F3E!important;border-color:#232F3E!important;box-shadow:0 2px 8px #0000004d!important}
 html body #topoFixo #topo{background:#131921!important;border-color:#131921!important;color:#fff!important}
 html body #topoFixo .categorias-topo{background:#232F3E!important;border-color:#232F3E!important}
@@ -1111,7 +1103,7 @@ html body #topoFixo .orcamento-input{border-color:#D5D9D9!important}
   <div class="sublinhas" id="sublinhas" role="group" aria-label="Refinar Beleza e Perfumaria" hidden><button type="button" data-linha="" aria-pressed="true">Tudo</button><button type="button" data-linha="beleza" aria-pressed="false">Beleza</button><button type="button" data-linha="perfumaria" aria-pressed="false">Perfumaria</button></div>
 </div></div>
 </div>
-<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Computadores de mesa</h1><p class="sub-lista">Desktops e mini PCs. Confira os componentes e o que acompanha cada anúncio.</p><p class="meta-lista">90 achados selecionados · Atualizada em 26/11/2026 às 12:47</p></div><section class="lista-intro" aria-label="Sobre esta lista"><p>Reunimos 90 ofertas de computadores de mesa, de R$ 13,90 a R$ 6.349,90, no Mercado Livre e Shopee, com desconto médio de 26% informado pela loja. Os preços são conferidos várias vezes por dia pelo nosso sistema e a oferta sai da lista quando acaba. Confira valor, frete e prazo na loja antes de finalizar a compra.</p><details><summary>Dicas para escolher</summary><ul><li>Confira se monitor, teclado e mouse estão inclusos no anúncio.</li><li>SSD deixa o computador bem mais rápido que HD.</li><li>Para jogos, veja a placa de vídeo dedicada e a fonte.</li></ul></details></section><div class="vitrine-abertura"><section class="hero" id="inicio" data-tema="computadores" aria-labelledby="tituloHero">
+<main class="wrap lista-pagina"><div class="cabecalho-interno"><h1>Computadores de mesa</h1><p class="sub-lista">Desktops e mini PCs. Confira os componentes e o que acompanha cada anúncio.</p><p class="meta-lista">90 achados selecionados · Atualizada em 26/11/2026 às 12:53</p></div><section class="lista-intro" aria-label="Sobre esta lista"><p>Reunimos 90 ofertas de computadores de mesa, de R$ 13,90 a R$ 6.349,90, no Mercado Livre e Shopee, com desconto médio de 26% informado pela loja. Os preços são conferidos várias vezes por dia pelo nosso sistema e a oferta sai da lista quando acaba. Confira valor, frete e prazo na loja antes de finalizar a compra.</p><details><summary>Dicas para escolher</summary><ul><li>Confira se monitor, teclado e mouse estão inclusos no anúncio.</li><li>SSD deixa o computador bem mais rápido que HD.</li><li>Para jogos, veja a placa de vídeo dedicada e a fonte.</li></ul></details></section><div class="vitrine-abertura"><section class="hero" id="inicio" data-tema="computadores" aria-labelledby="tituloHero">
   <figure class="hero-scene" id="cenarioHero" ><img id="cenarioImagem" src="cenario-computadores-a9613bb7f940.png" alt="Mascote do Clube usando notebook" decoding="async" fetchpriority="high" onerror="this.closest('.hero').dataset.semCena='true'"></figure>
   <div class="wrap">
     <div class="hero-copy">

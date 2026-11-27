@@ -1329,6 +1329,10 @@ html body #radarQuedas #radarLista{-webkit-mask-image:linear-gradient(90deg,tran
  html body #lista .card .compra a.ir,html body #topoFixo .aba,html body #radarQuedas .rq2-todas,html body #filtro summary,html body #ordenacao,html body .historico-bt,html body #limiteDigitado{min-height:44px!important}
  html body #fecharBarra{min-width:44px!important;min-height:44px!important}
 }
+
+/* Grade em alvenaria: cada card com a sua altura, sem vazios (o de baixo sobe) */
+#lista.e1-mas{grid-auto-rows:1px!important;row-gap:0!important;align-items:start!important;grid-auto-flow:row dense}
+#lista.e1-mas>*{align-self:start!important}
 </style></head>
 <body data-tema="casa">
 <a class="pular" href="#filtro">Ir para as ofertas</a>
@@ -2555,7 +2559,12 @@ function proc(){document.querySelectorAll('#lista .card:not([data-e1])').forEach
   ir.innerHTML='<span>Pegar oferta</span><span class="e1-seta" aria-hidden="true">→</span>';ir.setAttribute('aria-label','Pegar oferta'+(lj?' '+lj:'')+': '+tit.trim()+' (abre em nova aba)');
   if(lj&&cp){var o=document.createElement('span');o.className='e1-onde';o.textContent=lj;cp.appendChild(o)}}})}
 function marcarMenor(){var l=window.OFERTAS_CARREGADAS||window.OFERTAS;if(!Array.isArray(l)||!l.length)return false;menor={};l.forEach(function(o){if(o&&o.mp)menor[o.id]=1});document.querySelectorAll('#lista .card[data-e1]').forEach(selo);return true}
-function iniciar(){proc();var ls=document.getElementById('lista');if(ls){var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(proc,60)}).observe(ls,{childList:true,subtree:true})}
+function arrumarGrade(){var g=document.getElementById('lista');if(!g)return;var cs=getComputedStyle(g);if(cs.display!=='grid'){g.classList.remove('e1-mas');return}
+ if(!g.classList.contains('e1-mas')){g.setAttribute('data-gap',parseFloat(cs.rowGap)||12);g.classList.add('e1-mas')}
+ var cols=getComputedStyle(g).gridTemplateColumns.split(' ').length,gap=parseFloat(g.getAttribute('data-gap'))||12;
+ Array.prototype.forEach.call(g.children,function(c){if(cols<2){c.style.gridRowEnd='';return}c.style.gridRowEnd='span 1';var h=c.getBoundingClientRect().height;c.style.gridRowEnd=h?'span '+Math.ceil(h+gap):''})}
+var tg;function agendarGrade(){clearTimeout(tg);tg=setTimeout(arrumarGrade,80)}
+function iniciar(){proc();arrumarGrade();window.addEventListener('resize',agendarGrade);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(agendarGrade);var ls=document.getElementById('lista');if(ls){var t;new MutationObserver(function(){clearTimeout(t);t=setTimeout(function(){proc();agendarGrade()},60)}).observe(ls,{childList:true,subtree:true});ls.addEventListener('load',agendarGrade,true);ls.addEventListener('toggle',agendarGrade,true)}
  setTimeout(function limpar(){var l=window.OFERTAS_CARREGADAS||window.OFERTAS;if(!(Array.isArray(l)&&l.length)&&!limpar.n){limpar.n=1;return setTimeout(limpar,4000)}setTimeout(function(){if(!document.getElementById('radarQuedas')){var rz=document.getElementById('radarReserva');if(rz)rz.remove()}},1500)},2500);if(!marcarMenor()){var n=0,iv=setInterval(function(){if(marcarMenor()||++n>120)clearInterval(iv)},250)}}
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',iniciar);else iniciar()})();</script></body>
 
